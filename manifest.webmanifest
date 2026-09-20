@@ -20,19 +20,19 @@
   ],
   "icons": [
     {
-      "src": "assets/images/ntn-app-icon-192-pink-symbol-v157.png?v=163",
+      "src": "ntn-app-icon-192-pink-symbol-v157.png?v=163",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "assets/images/ntn-app-icon-512-pink-symbol-v157.png?v=163",
+      "src": "ntn-app-icon-512-pink-symbol-v157.png?v=163",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "assets/images/ntn-app-icon-512-pink-symbol-v157.png?v=163",
+      "src": "ntn-app-icon-512-pink-symbol-v157.png?v=163",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
