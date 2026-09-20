@@ -1,0 +1,41 @@
+{
+  "name": "Nech to nám",
+  "short_name": "Nech to nám",
+  "description": "Jednoduchá objednávka domácí pomoci",
+  "lang": "cs",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "portrait-primary",
+  "background_color": "#03111d",
+  "theme_color": "#061522",
+  "categories": [
+    "lifestyle",
+    "shopping"
+  ],
+  "icons": [
+    {
+      "src": "assets/images/ntn-app-icon-192-pink-symbol-v157.png?v=163",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/ntn-app-icon-512-pink-symbol-v157.png?v=163",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/ntn-app-icon-512-pink-symbol-v157.png?v=163",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
