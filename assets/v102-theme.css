@@ -1,0 +1,891 @@
+/*
+ * NECH TO NÁM — V102
+ * Jednotný grafit, kovová zlatá a decentní prostorová hloubka.
+ * Tato vrstva mění pouze vzhled. Rozložení, obsah a chování zůstávají beze změny.
+ */
+
+:root {
+  --ntn-v102-gold-ink: #000000;
+  --ntn-v100-bg: #141519;
+  --ntn-v100-bg-deep: #101115;
+  --ntn-v100-surface: #24252a;
+  --ntn-v100-surface-high: #2a2b31;
+  --ntn-v100-surface-low: #1d1e22;
+  --ntn-v100-surface-soft: #27282d;
+  --ntn-v100-text: #f5f1ea;
+  --ntn-v100-muted: #aaa7a2;
+  --ntn-v100-gold-deep: #8a5724;
+  --ntn-v100-gold-dark: #a96929;
+  --ntn-v100-gold: #c48638;
+  --ntn-v100-gold-rich: #d3a052;
+  --ntn-v100-gold-light: #e2bf79;
+  --ntn-v100-gold-glint: #f0d9a4;
+  --ntn-v100-gold-line: rgba(211, 160, 82, .34);
+  --ntn-v100-line: rgba(255, 255, 255, .10);
+  --ntn-v100-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .055),
+    inset 0 -1px 0 rgba(0, 0, 0, .22),
+    0 2px 0 rgba(72, 47, 25, .28),
+    0 13px 28px rgba(0, 0, 0, .27);
+  --ntn-v100-gold-gradient: linear-gradient(
+    105deg,
+    var(--ntn-v100-gold-deep) 0%,
+    var(--ntn-v100-gold) 25%,
+    var(--ntn-v100-gold-glint) 48%,
+    #b8752e 70%,
+    var(--ntn-v100-gold-rich) 100%
+  );
+
+  /* Starší části aplikace používají tyto názvy. */
+  --green: var(--ntn-v100-gold) !important;
+  --green-dark: var(--ntn-v100-gold-light) !important;
+  --green-soft: var(--ntn-v100-surface-high) !important;
+  --zv-bg: var(--ntn-v100-bg) !important;
+  --zv-bg2: #1b1c20 !important;
+  --zv-panel: var(--ntn-v100-surface) !important;
+  --zv-panel2: var(--ntn-v100-surface-high) !important;
+  --zv-text: var(--ntn-v100-text) !important;
+  --zv-muted: var(--ntn-v100-muted) !important;
+  --zv-gold: var(--ntn-v100-gold-rich) !important;
+  --zv-gold-2: var(--ntn-v100-gold-light) !important;
+  --zv-green: var(--ntn-v100-gold-rich) !important;
+  --premium-bg: #1b1c20 !important;
+  --premium-surface: var(--ntn-v100-surface) !important;
+  --premium-surface-raised: var(--ntn-v100-surface-high) !important;
+  --premium-panel: var(--ntn-v100-surface) !important;
+  --premium-panel-2: var(--ntn-v100-surface-high) !important;
+  --premium-text: var(--ntn-v100-text) !important;
+  --premium-muted: var(--ntn-v100-muted) !important;
+  --premium-gold: var(--ntn-v100-gold-rich) !important;
+  --city-accent: var(--ntn-v100-gold-rich) !important;
+  --city-gold: var(--ntn-v100-gold-light) !important;
+}
+
+html,
+body {
+  background: var(--ntn-v100-bg-deep) !important;
+}
+
+html body #app.app {
+  color: var(--ntn-v100-text) !important;
+  background: #17181c !important;
+}
+
+/* Jeden studený grafitový podklad na všech obrazovkách po intru. */
+html body #app .screen:not(#screen-intro),
+html body #app #screen-city.city-premium-screen,
+html body #app #screen-property,
+html body #app .account-screen,
+html body #app .ntn-corporate-screen {
+  color: var(--ntn-v100-text) !important;
+  background:
+    radial-gradient(circle at 84% 5%, rgba(211, 160, 82, .065), transparent 25%),
+    radial-gradient(circle at 6% 72%, rgba(255, 255, 255, .025), transparent 30%),
+    linear-gradient(155deg, #24252a 0%, #1b1c20 54%, #121316 100%) !important;
+}
+
+/* Hlavičky mají stejnou šedou jako zbytek objednávky. */
+html body #app .screen:not(#screen-intro) > .topbar,
+html body #app #screen-city > .city-premium-topbar,
+html body #app .account-screen > .topbar {
+  color: var(--ntn-v100-text) !important;
+  border-bottom-color: rgba(211, 160, 82, .20) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .025), transparent 48%),
+    rgba(29, 30, 34, .985) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .035),
+    0 10px 26px rgba(0, 0, 0, .24) !important;
+}
+
+html body #app .screen:not(#screen-intro) .progress {
+  background: #303137 !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .42) !important;
+}
+
+html body #app .screen:not(#screen-intro) .progress > span,
+html body #app .minimum-dock-progress-fill,
+html body #app .minimum-progress-fill {
+  background: var(--ntn-v100-gold-gradient) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .28),
+    0 0 10px rgba(196, 134, 56, .22) !important;
+}
+
+/* Kovová zlatá v hlavních titulcích, ne plochá žlutá. */
+html body #screen-city .city-premium-title span,
+html body #screen-property h2 span,
+html body #app .screen:not(#screen-intro) h2 > span {
+  color: var(--ntn-v100-gold-rich) !important;
+  background: linear-gradient(
+    180deg,
+    var(--ntn-v100-gold-glint) 0%,
+    var(--ntn-v100-gold-rich) 43%,
+    #aa6828 100%
+  ) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: 0 8px 22px rgba(126, 76, 25, .12) !important;
+}
+
+html body #app .screen:not(#screen-intro) .eyebrow,
+html body #app .app-task-price,
+html body #app .supplies-choice-price,
+html body #app .summary-review-cue,
+html body #app .summary-group-preview,
+html body #app .summary-item > strong,
+html body #app .static-grand-price,
+html body #app .minimum-dock-total,
+html body #app .checkout-review__price b,
+html body #app .total-line.big strong,
+html body #app .ntn-summary-glyph,
+html body #app .summary-rollup-arrow,
+html body #app .account-points-value,
+html body #app .account-review-cta-arrow {
+  color: var(--ntn-v100-gold-light) !important;
+}
+
+/* KROK 1 — města: žádná hnědá karta ani hnědý přechod u fotografie. */
+html body #screen-city .city-card {
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(145deg, #27282d, #222328) padding-box,
+    linear-gradient(
+      135deg,
+      rgba(240, 217, 164, .54),
+      rgba(181, 119, 47, .34) 34%,
+      rgba(255, 255, 255, .09) 62%,
+      rgba(211, 160, 82, .34)
+    ) border-box !important;
+  box-shadow: var(--ntn-v100-shadow) !important;
+}
+
+html body #screen-city .city-card--active {
+  background:
+    linear-gradient(145deg, #2a2b30, #24252a) padding-box,
+    linear-gradient(
+      135deg,
+      rgba(244, 224, 180, .74),
+      rgba(196, 134, 56, .58) 34%,
+      rgba(255, 255, 255, .13) 62%,
+      rgba(218, 170, 91, .54)
+    ) border-box !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .075),
+    inset 0 -1px 0 rgba(0, 0, 0, .24),
+    0 2px 0 rgba(82, 53, 25, .34),
+    0 15px 30px rgba(0, 0, 0, .30),
+    0 0 18px rgba(196, 134, 56, .07) !important;
+}
+
+html body #screen-city .city-card--soon {
+  opacity: .68 !important;
+  background:
+    linear-gradient(145deg, #222328, #1d1e22) padding-box,
+    linear-gradient(135deg, rgba(211, 160, 82, .24), rgba(255, 255, 255, .06), rgba(211, 160, 82, .15)) border-box !important;
+}
+
+html body #screen-city .city-card::after {
+  opacity: 1 !important;
+  background: linear-gradient(118deg, rgba(255, 255, 255, .045), transparent 34%, rgba(226, 191, 121, .03) 75%, transparent) !important;
+}
+
+html body #screen-city .city-card__visual {
+  filter: saturate(.82) contrast(1.035) brightness(.82) !important;
+}
+
+html body #screen-city .city-card--active .city-card__visual {
+  filter: saturate(.92) contrast(1.035) brightness(.91) !important;
+}
+
+html body #screen-city .city-card__visual::before {
+  background:
+    linear-gradient(90deg, rgba(16, 17, 20, .03) 0%, rgba(22, 23, 27, .10) 58%, #25262b 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, .015), rgba(0, 0, 0, .19)) !important;
+}
+
+html body #screen-city .city-card__visual::after {
+  background: linear-gradient(180deg, transparent, rgba(211, 160, 82, .46), transparent) !important;
+}
+
+html body #screen-city .city-card__name,
+html body #screen-city .city-card[data-city="klasterec"] .city-card__name,
+html body #screen-city .city-card--soon .city-card__name {
+  color: #f5f1ea !important;
+}
+
+html body #screen-city .city-premium-lead,
+html body #screen-city .city-card--soon .city-card__status,
+html body #screen-property .lead,
+html body #screen-property .topbar-title span {
+  color: var(--ntn-v100-muted) !important;
+}
+
+html body #screen-city .city-card--active:hover {
+  background:
+    linear-gradient(145deg, #2c2d33, #25262b) padding-box,
+    linear-gradient(135deg, rgba(246, 228, 188, .82), rgba(202, 141, 62, .66) 38%, rgba(255, 255, 255, .15) 64%, rgba(222, 175, 95, .60)) border-box !important;
+}
+
+html body #screen-city .city-card--active:active {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .04),
+    0 1px 0 rgba(74, 47, 22, .32),
+    0 7px 15px rgba(0, 0, 0, .24) !important;
+}
+
+/* Dostupnost je funkční stav a zůstává zelená. */
+html body #screen-city .city-card__status--available {
+  color: #92eda0 !important;
+  border-color: rgba(87, 225, 112, .26) !important;
+  background: rgba(47, 170, 69, .075) !important;
+}
+
+/* KROK 2 — Byt/Dům: grafitová spodní část místo hnědé. */
+html body #screen-property .property-choice-card {
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(#24252a, #24252a) padding-box,
+    linear-gradient(
+      135deg,
+      rgba(242, 220, 171, .68),
+      rgba(190, 126, 49, .50) 35%,
+      rgba(255, 255, 255, .11) 63%,
+      rgba(215, 165, 85, .48)
+    ) border-box !important;
+  box-shadow: var(--ntn-v100-shadow) !important;
+}
+
+html body #screen-property .property-choice-content {
+  color: var(--ntn-v100-text) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .035), transparent 42%),
+    linear-gradient(180deg, #292a30 0%, #222328 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .055),
+    inset 0 10px 18px rgba(0, 0, 0, .08) !important;
+}
+
+html body #screen-property .property-choice-card strong {
+  color: #f7f3ec !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .38) !important;
+}
+
+html body #screen-property .property-choice-photo,
+html body #screen-property .property-choice-card--flat .property-choice-photo,
+html body #screen-property .property-choice-card--house .property-choice-photo {
+  filter: saturate(.90) contrast(1.035) brightness(.94) !important;
+  box-shadow: inset 0 -14px 22px rgba(0, 0, 0, .17) !important;
+}
+
+html body #screen-property .property-choice-card--flat .property-choice-photo {
+  background-image:
+    linear-gradient(180deg, rgba(20, 21, 24, .025), rgba(12, 13, 16, .17)),
+    url("images/img-1daf3154aacec40b.webp") !important;
+}
+
+html body #screen-property .property-choice-card--house .property-choice-photo {
+  background-image:
+    linear-gradient(180deg, rgba(20, 21, 24, .02), rgba(12, 13, 16, .14)),
+    url("images/img-13be8c82161e4e42.webp") !important;
+}
+
+html body #screen-property .property-choice-card:hover {
+  background:
+    linear-gradient(#27282d, #27282d) padding-box,
+    linear-gradient(135deg, rgba(246, 226, 184, .78), rgba(202, 141, 62, .60) 36%, rgba(255, 255, 255, .14) 64%, rgba(222, 175, 95, .56)) border-box !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .075),
+    0 2px 0 rgba(72, 47, 25, .30),
+    0 17px 32px rgba(0, 0, 0, .31),
+    0 0 18px rgba(196, 134, 56, .07) !important;
+}
+
+html body #screen-property .property-choice-card:active {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .04),
+    0 1px 0 rgba(72, 47, 25, .26),
+    0 7px 15px rgba(0, 0, 0, .24) !important;
+}
+
+/* Společné plochy napříč celým objednávkovým tokem. */
+html body #app .order-method-card,
+html body #app .room-package-card,
+html body #app .whole-property-card,
+html body #app .room-hub-card,
+html body #app .app-task-tile,
+html body #app .app-info-card,
+html body #app .supplies-required-home,
+html body #app .supplies-choice-card,
+html body #app .discount-code-card,
+html body #app .summary-master-rollup,
+html body #app .summary-section-rollup,
+html body #app .summary-group-rollup,
+html body #app .radio-card,
+html body #app .payment-card,
+html body #app .checkout-review__total,
+html body #app .payment-total-card,
+html body #app .total-card,
+html body #app .checkout-room-block,
+html body #app .fallback-summary-item,
+html body #app .fallback-summary-fixed,
+html body #app .order-card,
+html body #app .status-card,
+html body #app .register-card,
+html body #app .confirmation-card,
+html body #app .sms-card,
+html body #app .account-card,
+html body #app .account-guest-card,
+html body #app .account-order-panel,
+html body #app .account-row-panel,
+html body #app .loyalty-card,
+html body #app .account-empty,
+html body #app .ntn-info-hero,
+html body #app .ntn-value-card,
+html body #app .ntn-info-card,
+html body #app .ntn-step-list li,
+html body #app .ntn-rule-list article,
+html body #app .ntn-contact-card,
+html body #app .ntn-price-grid article,
+html body #app .ntn-faq-list details,
+html body #app .ntn-callout,
+html body #app .ntn-legal-links a {
+  border-color: rgba(211, 160, 82, .24) !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .050), rgba(255, 255, 255, .010)),
+    var(--ntn-v100-surface) !important;
+  box-shadow: var(--ntn-v100-shadow) !important;
+}
+
+/* Jemně odlišené plochy, aby seznamy nebyly mrtvé ani slité. */
+html body #screen-summary .summary-master-rollup,
+html body #app .payment-card.selected,
+html body #app .payment-card:has(input:checked),
+html body #app .radio-card:has(input:checked),
+html body #app .supplies-choice-card:has(input:checked),
+html body #app .is-selected,
+html body #app .app-task-tile.is-from-quick-choice {
+  border-color: rgba(211, 160, 82, .46) !important;
+  background:
+    linear-gradient(145deg, rgba(226, 191, 121, .085), rgba(255, 255, 255, .018)),
+    var(--ntn-v100-surface-soft) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .07),
+    inset 0 -1px 0 rgba(0, 0, 0, .22),
+    0 2px 0 rgba(72, 47, 25, .25),
+    0 13px 28px rgba(0, 0, 0, .28),
+    0 0 18px rgba(196, 134, 56, .06) !important;
+}
+
+html body #screen-summary .summary-price-rollup,
+html body #screen-summary .summary-supplies-rollup,
+html body #screen-summary .summary-info-rollup,
+html body #screen-summary .summary-group-rollup > .summary-group-head,
+html body #screen-summary .summary-item,
+html body #screen-payment .checkout-accordion__summary {
+  background: var(--ntn-v100-surface) !important;
+}
+
+html body #screen-summary .summary-master-rollup {
+  background: var(--ntn-v100-surface-high) !important;
+}
+
+html body #screen-summary .summary-supplies-rollup {
+  background: var(--ntn-v100-surface-soft) !important;
+}
+
+html body #screen-summary .summary-rollup-icon,
+html body #app .ntn-value-card > span,
+html body #app .ntn-contact-card > span,
+html body #app .fallback-summary-icon {
+  color: var(--ntn-v100-gold-light) !important;
+  border-color: rgba(211, 160, 82, .36) !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .018)),
+    #303137 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .08),
+    0 6px 14px rgba(0, 0, 0, .18) !important;
+}
+
+/* Formuláře a vnitřní řádky zůstávají čistě šedé. */
+html body #app input:not([type="checkbox"]):not([type="radio"]),
+html body #app select,
+html body #app textarea,
+html body #app .locked-location,
+html body #app .field-card,
+html body #app .details-card,
+html body #app .checkout-address-card,
+html body #app .summary-rollup-body .total-line,
+html body #app .summary-rollup-body [class*="total-line"] {
+  color: var(--ntn-v100-text) !important;
+  border-color: rgba(211, 160, 82, .20) !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .035), transparent),
+    #23242a !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .035),
+    inset 0 2px 8px rgba(0, 0, 0, .13) !important;
+}
+
+html body #app input:not([type="checkbox"]):not([type="radio"]):focus,
+html body #app select:focus,
+html body #app textarea:focus {
+  border-color: rgba(211, 160, 82, .62) !important;
+  box-shadow:
+    0 0 0 3px rgba(196, 134, 56, .10),
+    inset 0 1px 0 rgba(255, 255, 255, .04) !important;
+  outline: none !important;
+}
+
+/* Pevné spodní lišty jsou stejný grafit, bez hnědého nádechu. */
+html body #app .app-room-action,
+html body #app .minimum-order-dock,
+html body #app .room-confirm-dock,
+html body #app .cart-bar,
+html body #app .package-order-dock,
+html body #app .quick-choice-dock,
+html body #app #screen-summary .minimum-dock,
+html body #app #minimumOrderDock {
+  color: var(--ntn-v100-text) !important;
+  border-top-color: rgba(211, 160, 82, .20) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .018), transparent 42%),
+    rgba(23, 24, 28, .985) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .025),
+    0 -13px 30px rgba(0, 0, 0, .31) !important;
+}
+
+/* Aktivní hlavní tlačítka: hlubší kovová zlatá s jemnou hranou a stínem. */
+html body #app .screen:not(#screen-intro) .primary,
+html body #app .room-confirm-button,
+html body #app .minimum-gate-enabled,
+html body #app #screen-summary .minimum-dock .primary,
+html body #app #minimumOrderDock .primary,
+html body #app .ntn-info-primary {
+  color: #17110b !important;
+  border: 1px solid rgba(240, 217, 164, .58) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .22), transparent 39%),
+    linear-gradient(135deg, #a56527 0%, #cd9344 36%, #e5c27d 52%, #b6722b 75%, #d2a052 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .34),
+    inset 0 -2px 0 rgba(86, 51, 20, .34),
+    0 3px 0 rgba(91, 57, 25, .72),
+    0 11px 24px rgba(0, 0, 0, .27),
+    0 0 17px rgba(196, 134, 56, .08) !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .16) !important;
+}
+
+html body #app .screen:not(#screen-intro) .primary:active,
+html body #app .room-confirm-button:active,
+html body #app .minimum-gate-enabled:active,
+html body #app .ntn-info-primary:active {
+  transform: translateY(2px) scale(.992) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .24),
+    inset 0 -1px 0 rgba(86, 51, 20, .25),
+    0 1px 0 rgba(91, 57, 25, .62),
+    0 6px 14px rgba(0, 0, 0, .24) !important;
+}
+
+/* Neaktivní tlačítko je zřetelně šedé, ne hnědé. */
+html body #app button:disabled,
+html body #app .primary.is-disabled,
+html body #app .minimum-gate-disabled,
+html body #app .room-confirm-disabled {
+  color: #918e89 !important;
+  border-color: rgba(255, 255, 255, .08) !important;
+  background: linear-gradient(180deg, #303137, #292a2f) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04) !important;
+  text-shadow: none !important;
+}
+
+html body #app .room-cart-button {
+  --cart-background: linear-gradient(180deg, #303137, #292a2f) !important;
+  --cart-color: #918e89 !important;
+  --cart-subtext: #84817d !important;
+  --cart-track: #3a3b41 !important;
+  --cart-progress: var(--ntn-v100-gold-rich) !important;
+  color: var(--cart-color) !important;
+  border-color: rgba(255, 255, 255, .08) !important;
+  background: var(--cart-background) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04) !important;
+}
+
+html body #app .room-cart-button.minimum-met {
+  --cart-background:
+    linear-gradient(180deg, rgba(255, 255, 255, .22), transparent 39%),
+    linear-gradient(135deg, #a56527 0%, #cd9344 36%, #e5c27d 52%, #b6722b 75%, #d2a052 100%) !important;
+  --cart-color: var(--ntn-v102-gold-ink) !important;
+  --cart-subtext: var(--ntn-v102-gold-ink) !important;
+  border-color: rgba(240, 217, 164, .58) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .34),
+    inset 0 -2px 0 rgba(86, 51, 20, .34),
+    0 3px 0 rgba(91, 57, 25, .66),
+    0 11px 24px rgba(0, 0, 0, .27) !important;
+}
+
+/* Vedlejší ovládání a zlaté obrysy. */
+html body #app .secondary,
+html body #app .soft-button,
+html body #app .supplies-choice-back,
+html body #app .icon-btn.ghost,
+html body #app .city-round-control,
+html body #app .city-step-indicator,
+html body #app .discount-code-card button {
+  color: var(--ntn-v100-gold-light) !important;
+  border-color: rgba(211, 160, 82, .38) !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .065), rgba(255, 255, 255, .012)),
+    var(--ntn-v100-surface-low) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .055),
+    0 7px 17px rgba(0, 0, 0, .22) !important;
+}
+
+/* Přirozenější kovové ceny a linky bez neonově žlutého dojmu. */
+html body #app .app-task-price,
+html body #app .summary-item > strong,
+html body #app .supplies-choice-price,
+html body #app .static-grand-price,
+html body #app .checkout-review__price b,
+html body #app .minimum-dock-total,
+html body #app .total-line.big strong {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .07), 0 4px 12px rgba(82, 50, 20, .16) !important;
+}
+
+/* Firemní a účtové obrazovky používají stejné materiály jako objednávka. */
+html body #app .ntn-corporate-screen .ntn-info-page,
+html body #app .account-screen .page.narrow {
+  color: var(--ntn-v100-text) !important;
+}
+
+html body #app .ntn-corporate-screen p,
+html body #app .ntn-corporate-screen li,
+html body #app .account-screen .lead,
+html body #app .account-screen small {
+  color: var(--ntn-v100-muted) !important;
+}
+
+html body #app .ntn-step-list li > span,
+html body #app .ntn-menu-order {
+  background: var(--ntn-v100-gold-gradient) !important;
+}
+
+@media (hover: hover) {
+  html body #app .order-method-card:hover,
+  html body #app .room-package-card:hover,
+  html body #app .whole-property-card:hover,
+  html body #app .room-hub-card:hover,
+  html body #app .app-task-tile:hover,
+  html body #app .supplies-choice-card:hover,
+  html body #app .payment-card:hover,
+  html body #app .ntn-contact-card:hover {
+    border-color: rgba(211, 160, 82, .42) !important;
+    filter: brightness(1.025) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, .075),
+      inset 0 -1px 0 rgba(0, 0, 0, .22),
+      0 2px 0 rgba(72, 47, 25, .28),
+      0 16px 31px rgba(0, 0, 0, .30),
+      0 0 16px rgba(196, 134, 56, .05) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body #app .screen:not(#screen-intro) * {
+    transition-duration: .01ms !important;
+  }
+}
+
+/* Na kovově zlatém podkladu je vždy pouze černý obsah.
+   Pravidlo zahrnuje hlavní text, podtext, cenu, symboly i šipky, ale
+   nezasahuje do šedých neaktivních ani zelených stavových tlačítek. */
+html body #app .primary:not(:disabled):not([aria-disabled="true"]):not(.is-disabled):not(.minimum-gate-disabled):not(.room-confirm-disabled),
+html body #app .room-confirm-button,
+html body #app .minimum-gate-enabled,
+html body #app .ntn-info-primary,
+html body #app .room-cart-button.minimum-met,
+html body #app .account-review-cta,
+html body #app .account-nav-primary,
+html body #app .app-add-toggle:not(:checked) + .app-add-choice,
+html body #app .static-register-toggle:not(:checked) + .app-add-choice,
+html body #app .add-btn:not(.remove) {
+  color: var(--ntn-v102-gold-ink) !important;
+  -webkit-text-fill-color: var(--ntn-v102-gold-ink) !important;
+  text-shadow: none !important;
+  --cart-color: var(--ntn-v102-gold-ink) !important;
+  --cart-subtext: var(--ntn-v102-gold-ink) !important;
+}
+
+html body #app .primary:not(:disabled):not([aria-disabled="true"]):not(.is-disabled):not(.minimum-gate-disabled):not(.room-confirm-disabled) *,
+html body #app .room-confirm-button *,
+html body #app .minimum-gate-enabled *,
+html body #app .ntn-info-primary *,
+html body #app .room-cart-button.minimum-met *,
+html body #app .account-review-cta *,
+html body #app .account-nav-primary *,
+html body #app .app-add-toggle:not(:checked) + .app-add-choice *,
+html body #app .static-register-toggle:not(:checked) + .app-add-choice *,
+html body #app .add-btn:not(.remove) * {
+  color: var(--ntn-v102-gold-ink) !important;
+  -webkit-text-fill-color: var(--ntn-v102-gold-ink) !important;
+  text-shadow: none !important;
+}
+
+html body #app .primary:not(:disabled):not([aria-disabled="true"]):not(.is-disabled):not(.minimum-gate-disabled):not(.room-confirm-disabled)::before,
+html body #app .primary:not(:disabled):not([aria-disabled="true"]):not(.is-disabled):not(.minimum-gate-disabled):not(.room-confirm-disabled)::after,
+html body #app .room-confirm-button::before,
+html body #app .room-confirm-button::after,
+html body #app .minimum-gate-enabled::before,
+html body #app .minimum-gate-enabled::after,
+html body #app .ntn-info-primary::before,
+html body #app .ntn-info-primary::after,
+html body #app .room-cart-button.minimum-met::before,
+html body #app .room-cart-button.minimum-met::after,
+html body #app .account-review-cta::before,
+html body #app .account-review-cta::after,
+html body #app .account-nav-primary::before,
+html body #app .account-nav-primary::after,
+html body #app .app-add-toggle:not(:checked) + .app-add-choice::before,
+html body #app .app-add-toggle:not(:checked) + .app-add-choice::after,
+html body #app .static-register-toggle:not(:checked) + .app-add-choice::before,
+html body #app .static-register-toggle:not(:checked) + .app-add-choice::after,
+html body #app .add-btn:not(.remove)::before,
+html body #app .add-btn:not(.remove)::after {
+  color: var(--ntn-v102-gold-ink) !important;
+  -webkit-text-fill-color: var(--ntn-v102-gold-ink) !important;
+  text-shadow: none !important;
+}
+
+html body #app .primary:not(:disabled):not([aria-disabled="true"]):not(.is-disabled):not(.minimum-gate-disabled):not(.room-confirm-disabled) svg,
+html body #app .room-confirm-button svg,
+html body #app .minimum-gate-enabled svg,
+html body #app .ntn-info-primary svg,
+html body #app .room-cart-button.minimum-met svg,
+html body #app .account-review-cta svg,
+html body #app .account-nav-primary svg,
+html body #app .app-add-toggle:not(:checked) + .app-add-choice svg,
+html body #app .static-register-toggle:not(:checked) + .app-add-choice svg,
+html body #app .add-btn:not(.remove) svg {
+  color: var(--ntn-v102-gold-ink) !important;
+  stroke: var(--ntn-v102-gold-ink) !important;
+}
+
+/* V102 — jeden společný systém potvrzení napříč celým webem.
+   Čtverec je vždy černý, potvrzení vždy zelené a kovový rámeček
+   navazuje na ostatní grafitovo-zlaté ovládací prvky. */
+:root {
+  --ntn-v102-control-black: #050607;
+  --ntn-v102-control-black-top: #111217;
+  --ntn-v102-control-green: #3be77d;
+  --ntn-v102-control-green-glow: rgba(59, 231, 125, .30);
+  --ntn-v102-control-gold: rgba(211, 160, 82, .72);
+  --ntn-v102-control-gold-soft: rgba(211, 160, 82, .28);
+}
+
+/* Registrační souhlas i oba závěrečné souhlasy používají stejnou stavbu. */
+html body #app .ntn-confirm-row {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 32px minmax(0, 1fr) !important;
+  align-items: start !important;
+  gap: 12px !important;
+  margin: 14px 0 !important;
+  padding: 14px !important;
+  border: 1px solid var(--ntn-v102-control-gold-soft) !important;
+  border-radius: 16px !important;
+  color: #c6c2bb !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .010)),
+    #202126 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .04),
+    0 8px 19px rgba(0, 0, 0, .19) !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html body #app .ntn-confirm-row:has(.ntn-confirm-input:checked) {
+  border-color: var(--ntn-v102-control-gold-soft) !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .010)),
+    #202126 !important;
+}
+
+html body #app .ntn-confirm-row[hidden] {
+  display: none !important;
+}
+
+/* Skutečný input zůstává přístupný formuláři i klávesnici, vizuál kreslí společný box. */
+html body #app .ntn-confirm-row > .ntn-confirm-input {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  min-width: 1px !important;
+  min-height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  opacity: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  pointer-events: none !important;
+}
+
+html body #app .ntn-confirm-box,
+html body #app #screen-payment .checkout-consent-box {
+  box-sizing: border-box !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  display: grid !important;
+  place-items: center !important;
+  margin: 0 !important;
+  border: 2px solid var(--ntn-v102-control-gold) !important;
+  border-radius: 8px !important;
+  color: var(--ntn-v102-control-green) !important;
+  background:
+    linear-gradient(145deg, var(--ntn-v102-control-black-top), var(--ntn-v102-control-black)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .075),
+    inset 0 -2px 3px rgba(0, 0, 0, .72),
+    0 4px 10px rgba(0, 0, 0, .28) !important;
+  transition: border-color .16s ease, box-shadow .16s ease, transform .12s ease !important;
+}
+
+html body #app .ntn-confirm-box::before,
+html body #app .ntn-confirm-box::after {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+html body #app .ntn-confirm-box svg {
+  width: 21px !important;
+  height: 21px !important;
+  fill: none !important;
+  stroke: var(--ntn-v102-control-green) !important;
+  stroke-width: 3.1 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  opacity: 0 !important;
+  transform: scale(.68) !important;
+  filter: drop-shadow(0 0 3px rgba(59, 231, 125, .34)) !important;
+  transition: opacity .14s ease, transform .16s ease !important;
+}
+
+html body #app .ntn-confirm-input:checked + .ntn-confirm-box {
+  border-color: var(--ntn-v102-control-gold) !important;
+  color: var(--ntn-v102-control-green) !important;
+  background:
+    linear-gradient(145deg, var(--ntn-v102-control-black-top), var(--ntn-v102-control-black)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .075),
+    inset 0 -2px 3px rgba(0, 0, 0, .72),
+    0 4px 10px rgba(0, 0, 0, .30),
+    0 0 10px var(--ntn-v102-control-green-glow) !important;
+}
+
+html body #app .ntn-confirm-input:checked + .ntn-confirm-box svg {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  stroke: var(--ntn-v102-control-green) !important;
+}
+
+html body #app .ntn-confirm-input:focus-visible + .ntn-confirm-box {
+  outline: 3px solid rgba(59, 231, 125, .24) !important;
+  outline-offset: 3px !important;
+}
+
+html body #app .ntn-confirm-row:active .ntn-confirm-box {
+  transform: translateY(1px) scale(.97) !important;
+}
+
+html body #app .ntn-confirm-input:disabled + .ntn-confirm-box {
+  opacity: .48 !important;
+  filter: grayscale(.35) !important;
+}
+
+html body #app .ntn-confirm-row a,
+html body #app .checkout-consent-copy a {
+  color: var(--ntn-v100-gold-rich) !important;
+  text-decoration-color: rgba(211, 160, 82, .58) !important;
+  text-underline-offset: 2px !important;
+}
+
+html body #app .ntn-confirm-row .checkout-consent-copy strong {
+  color: var(--ntn-v100-text) !important;
+}
+
+html body #app .ntn-confirm-row .checkout-consent-copy small {
+  color: var(--ntn-v100-muted) !important;
+}
+
+/* Potvrzení vybrané práce, místnosti, celého balíčku a prostředků
+   mají stejný černý materiál a stejnou zelenou fajfku. */
+html body #app .app-room-screen .app-task-review::after,
+html body #app .room-selection-screen .room-hub-card .room-selected-check,
+html body #app .whole-property-check,
+html body #app #screen-supplies-choice .supplies-choice-radio {
+  color: var(--ntn-v102-control-green) !important;
+  -webkit-text-fill-color: var(--ntn-v102-control-green) !important;
+  border: 2px solid var(--ntn-v102-control-gold) !important;
+  border-radius: 8px !important;
+  background:
+    linear-gradient(145deg, var(--ntn-v102-control-black-top), var(--ntn-v102-control-black)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .075),
+    inset 0 -2px 3px rgba(0, 0, 0, .72),
+    0 4px 10px rgba(0, 0, 0, .28) !important;
+  text-shadow: 0 0 6px rgba(59, 231, 125, .32) !important;
+}
+
+html body #app #screen-supplies-choice .supplies-choice-radio::after {
+  color: var(--ntn-v102-control-green) !important;
+  -webkit-text-fill-color: var(--ntn-v102-control-green) !important;
+  background: transparent !important;
+  text-shadow: 0 0 6px rgba(59, 231, 125, .32) !important;
+}
+
+html body:has(.app-add-toggle:checked) #app .app-room-screen .app-task-review::after,
+html body #app .room-selection-screen .room-hub-card.is-room-confirmed .room-selected-check,
+html body #app .whole-property-card.is-selected .whole-property-check,
+body:where(:not(.nf)):has(#supplies-customer:checked) #app #screen-supplies-choice .supplies-pre-customer .supplies-choice-radio,
+body:where(:not(.nf)):has(#supplies-helper:checked) #app #screen-supplies-choice .supplies-pre-helper .supplies-choice-radio,
+html.ntn-fast-js body #app #screen-supplies-choice .supplies-choice-card.selected .supplies-choice-radio {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .075),
+    inset 0 -2px 3px rgba(0, 0, 0, .72),
+    0 4px 10px rgba(0, 0, 0, .30),
+    0 0 10px var(--ntn-v102-control-green-glow) !important;
+}
+
+/* Krokové potvrzení používá stejnou černou plochu; kruhový tvar zůstává,
+   protože jde o průběh procesu, nikoli o checkbox. */
+html body #app .status-item.done .status-dot,
+html body #app .status-item.active .status-dot {
+  color: var(--ntn-v102-control-green) !important;
+  border-color: var(--ntn-v102-control-gold-soft) !important;
+  background: var(--ntn-v102-control-black) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .06),
+    0 0 8px rgba(59, 231, 125, .14) !important;
+}
+
+@media (max-width: 430px) {
+  html body #app .ntn-confirm-row {
+    grid-template-columns: 32px minmax(0, 1fr) !important;
+    gap: 11px !important;
+    padding: 14px !important;
+    border-radius: 15px !important;
+  }
+}

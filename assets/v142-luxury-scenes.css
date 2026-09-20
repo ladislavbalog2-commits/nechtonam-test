@@ -1,0 +1,846 @@
+/* NECH TO NÁM v142 — decent luxury scenes after the unchanged intro. */
+:root {
+  --v142-bg: #0a0b0e;
+  --v142-bg-soft: #111217;
+  --v142-panel: rgba(31, 32, 38, 0.94);
+  --v142-panel-strong: rgba(24, 25, 30, 0.98);
+  --v142-line: rgba(214, 165, 82, 0.54);
+  --v142-line-soft: rgba(214, 165, 82, 0.24);
+  --v142-gold: #d8a957;
+  --v142-gold-light: #f0ce8b;
+  --v142-gold-deep: #8d5926;
+  --v142-ivory: #fff9ef;
+  --v142-muted: #bbb7b0;
+  --v142-green: #39df83;
+  --v142-shadow: 0 18px 46px rgba(0, 0, 0, 0.42);
+}
+
+html body {
+  background: #08090b !important;
+}
+
+html body #app {
+  background: var(--v142-bg) !important;
+}
+
+html body #app .screen:not(#screen-intro) {
+  isolation: isolate;
+  color: var(--v142-ivory) !important;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(216, 169, 87, 0.075), transparent 24rem),
+    radial-gradient(circle at 90% 78%, rgba(216, 169, 87, 0.045), transparent 30rem),
+    linear-gradient(158deg, #111217 0%, #0b0c10 52%, #08090b 100%) !important;
+}
+
+html body #app .screen:not(#screen-intro)::after {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  inset: var(--ntn-sitebar-h, 60px) 0 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.22;
+}
+
+html body #app .screen:not(#screen-intro) > .topbar,
+html body #app .screen:not(#screen-intro) > .city-premium-topbar,
+html body #app .screen:not(#screen-intro) > .progress,
+html body #app .screen:not(#screen-intro) > .page,
+html body #app .screen:not(#screen-intro) > .city-premium-page,
+html body #app .screen:not(#screen-intro) > .room-mini-summary,
+html body #app .screen:not(#screen-intro) > .app-room-action,
+html body #app .screen:not(#screen-intro) > .minimum-order-dock,
+html body #app .screen:not(#screen-intro) > .supplies-choice-shell,
+html body #app .screen:not(#screen-intro) > .ntn-supplies-modal,
+html body #app .screen:not(#screen-intro) > .app-info-sheet,
+html body #app .screen:not(#screen-intro) > .account-bottom-nav {
+  z-index: 2;
+}
+
+/* Decorative photography remains a restrained lower scene, never a full-page wallpaper. */
+html body #app .ntn-v142-decor {
+  position: fixed;
+  z-index: 0;
+  left: 50%;
+  bottom: 0;
+  width: min(100vw, 820px);
+  height: clamp(220px, 31svh, 310px);
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateX(-50%);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.96;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.42) 16%, #000 42%, #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.42) 16%, #000 42%, #000 100%);
+}
+
+html body #app .ntn-v142-decor::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(9, 10, 13, 0.8), transparent 42%),
+    linear-gradient(90deg, rgba(8, 9, 11, 0.8), transparent 53%);
+}
+
+html body #app #screen-account.account-screen > header.topbar.account-topbar,
+html body #app section.screen.account-screen > header.topbar {
+  height: 66px !important;
+  min-height: 66px !important;
+  padding: 8px 14px !important;
+}
+
+html body #app #screen-account.account-screen > header.topbar.account-topbar .topbar-title,
+html body #app section.screen.account-screen > header.topbar .topbar-title {
+  height: 48px !important;
+  min-height: 48px !important;
+}
+
+html body #app #screen-account.account-screen > header.topbar.account-topbar .topbar-title::before,
+html body #app section.screen.account-screen > header.topbar .topbar-title::before {
+  content: none !important;
+  display: none !important;
+}
+
+html body #app .ntn-v142-decor--roses {
+  background-image: url("images/ntn-roses-candle-scene-v142.webp");
+}
+
+html body #app .ntn-v142-decor--towel {
+  background-image: url("images/ntn-spa-towel-cleaning-scene-v142.webp");
+}
+
+html body #app .ntn-v142-decor--notebook {
+  background-image: url("images/ntn-notebook-scene-v142.webp");
+}
+
+html body #app .ntn-v142-decor--single-rose {
+  height: clamp(205px, 28svh, 285px);
+  background-image: url("images/ntn-single-pink-rose-scene-v143.webp");
+  background-position: 62% bottom;
+}
+
+html body #app .ntn-v142-decor--bouquet {
+  height: clamp(245px, 34svh, 350px);
+  background-image: url("images/ntn-pink-rose-bouquet-scene-v143.webp");
+  background-position: 58% bottom;
+}
+
+html body #app .ntn-v142-decor__copy {
+  position: absolute;
+  z-index: 1;
+  right: 20px;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  max-width: min(62vw, 300px);
+  color: var(--v142-gold-light);
+  font: italic 500 clamp(18px, 5vw, 25px)/1.05 "Snell Roundhand", "Segoe Script", "Brush Script MT", cursive;
+  text-align: right;
+  text-shadow: 0 2px 8px #000, 0 0 18px rgba(0, 0, 0, 0.88);
+  transform: rotate(-2deg);
+}
+
+html body #app .app-room-screen .ntn-v142-decor__copy,
+html body #app .app-info-screen .ntn-v142-decor__copy,
+html body #app #screen-summary .ntn-v142-decor__copy,
+html body #app .room-package-menu-screen .ntn-v142-decor__copy,
+html body #app .room-selection-screen .ntn-v142-decor__copy,
+html body #app .whole-property-screen .ntn-v142-decor__copy {
+  display: none;
+}
+
+html body #app .room-selection-screen .ntn-v142-decor,
+html body #app .app-room-screen .ntn-v142-decor {
+  height: clamp(275px, 38svh, 390px);
+  opacity: 1;
+}
+
+html body #app .app-info-screen .ntn-v142-decor {
+  height: clamp(205px, 29svh, 300px);
+  opacity: 0.92;
+}
+
+html.ntn-ios-keyboard-open body #app .ntn-v142-decor,
+html body.ntn-ios-keyboard-open #app .ntn-v142-decor {
+  display: none !important;
+}
+
+/* One compact branded navigation line, matching the chosen collage. */
+html body #ntnSiteControls .ntn-sitebar {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: var(--ntn-sitebar-h) !important;
+  padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right)) !important;
+}
+
+html body #ntnSiteControls .ntn-sitebar-brand {
+  position: absolute !important;
+  z-index: 2 !important;
+  top: calc(env(safe-area-inset-top) + 5px) !important;
+  left: 50% !important;
+  width: 90px !important;
+  height: 49px !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  pointer-events: auto !important;
+  transform: translateX(-50%) !important;
+  text-decoration: none !important;
+}
+
+html body #ntnSiteControls .ntn-sitebar-brand img {
+  width: 86px !important;
+  height: 66px !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.66)) !important;
+}
+
+html body.ntn-global-intro #ntnSiteControls .ntn-sitebar-brand {
+  display: none !important;
+}
+
+/* The large repeated logo blocks are reduced: the navigation already carries the brand. */
+html body #app .screen:not(#screen-intro):not(#screen-city) > .topbar {
+  min-height: 66px !important;
+  height: auto !important;
+  padding: 8px 14px !important;
+  grid-template-columns: 46px minmax(0, 1fr) 46px !important;
+  border-bottom: 1px solid var(--v142-line-soft) !important;
+  background: linear-gradient(180deg, rgba(25, 26, 31, 0.97), rgba(14, 15, 18, 0.97)) !important;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25) !important;
+}
+
+html body #app .screen:not(#screen-intro):not(#screen-city) > .topbar .topbar-title {
+  min-height: 48px !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
+html body #app .screen:not(#screen-intro):not(#screen-city) > .topbar .topbar-title::before,
+html body #app .screen:not(#screen-intro) .global-topbar-logo {
+  content: none !important;
+  display: none !important;
+}
+
+html body #app .screen:not(#screen-intro) > .topbar .topbar-title strong {
+  color: var(--v142-ivory) !important;
+  font: 700 17px/1.1 Georgia, "Times New Roman", serif !important;
+  letter-spacing: 0 !important;
+}
+
+html body #app .screen:not(#screen-intro) > .topbar .topbar-title span {
+  color: var(--v142-muted) !important;
+  font-size: 13px !important;
+}
+
+html body #app #screen-city > .city-premium-topbar {
+  min-height: 66px !important;
+  height: auto !important;
+  padding: 8px 14px !important;
+  border-bottom: 1px solid var(--v142-line-soft) !important;
+  background: linear-gradient(180deg, rgba(25, 26, 31, 0.97), rgba(14, 15, 18, 0.97)) !important;
+}
+
+html body #app #screen-city .city-brand-lockup {
+  display: none !important;
+}
+
+html body #app .screen:not(#screen-intro) > .progress {
+  position: relative !important;
+  height: 3px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+html body #app .screen:not(#screen-intro) > .progress > span {
+  background: linear-gradient(90deg, var(--v142-gold-deep), var(--v142-gold-light)) !important;
+  box-shadow: 0 0 10px rgba(216, 169, 87, 0.35) !important;
+}
+
+/* Typography and spacing. */
+html body #app .screen:not(#screen-intro) .page,
+html body #app .screen:not(#screen-intro) .city-premium-page,
+html body #app .screen:not(#screen-intro) .supplies-choice-shell {
+  position: relative;
+  background: transparent !important;
+}
+
+html body #app .screen:not(#screen-intro) .page,
+html body #app #screen-city .city-premium-page {
+  padding-top: clamp(24px, 5vw, 38px) !important;
+}
+
+html body #app .screen:not(#screen-intro) h1,
+html body #app .screen:not(#screen-intro) h2,
+html body #app .screen:not(#screen-intro) h3 {
+  color: var(--v142-ivory);
+  font-family: Georgia, "Times New Roman", serif;
+  text-wrap: balance;
+}
+
+html body #app .screen:not(#screen-intro) h2 {
+  font-size: clamp(34px, 8.7vw, 52px) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.035em !important;
+}
+
+html body #app .screen:not(#screen-intro) .eyebrow {
+  color: var(--v142-gold-light) !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.19em !important;
+}
+
+html body #app .screen:not(#screen-intro) .lead,
+html body #app .screen:not(#screen-intro) .page-head p,
+html body #app .screen:not(#screen-intro) .app-room-copy,
+html body #app .screen:not(#screen-intro) .app-info-hero p {
+  color: var(--v142-muted) !important;
+}
+
+/* Shared cards: graphite surfaces, satin-gold outlines, rounded corners. */
+html body #app .screen:not(#screen-intro) :is(
+  .choice-card,
+  .order-method-card,
+  .room-package-card,
+  .whole-property-card,
+  .whole-property-details,
+  .app-task,
+  .app-info-card,
+  .static-cart-row,
+  .summary-total-card,
+  .schedule-option,
+  .payment-option,
+  .details-card,
+  .account-card,
+  .ntn-info-card,
+  .notice,
+  .loyalty-card,
+  .account-row-panel,
+  .ntn-equipment-panel,
+  .ntn-equipment-row
+) {
+  border-color: var(--v142-line) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 55%),
+    var(--v142-panel) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), var(--v142-shadow) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+html body #app .screen:not(#screen-intro) :is(
+  .choice-card,
+  .order-method-card,
+  .room-package-card,
+  .whole-property-card,
+  .app-task,
+  .schedule-option,
+  .payment-option,
+  .supplies-choice-card
+):active {
+  transform: scale(0.985);
+}
+
+html body #app .screen:not(#screen-intro) :is(
+  .choice-card,
+  .order-method-card,
+  .room-package-card,
+  .whole-property-card,
+  .app-task,
+  .static-cart-row,
+  .schedule-option,
+  .payment-option,
+  .ntn-equipment-row
+).selected,
+html body #app .screen:not(#screen-intro) [aria-pressed="true"] {
+  border-color: var(--v142-gold-light) !important;
+  box-shadow: inset 0 0 0 1px rgba(240, 206, 139, 0.45), 0 0 24px rgba(216, 169, 87, 0.15) !important;
+}
+
+html body #app .screen:not(#screen-intro) :is(
+  .primary,
+  .app-add-choice,
+  .minimum-dock-button,
+  .room-confirm-button,
+  .ntn-supplies-modal-confirm,
+  button[type="submit"]
+) {
+  border: 1px solid #f0cd88 !important;
+  color: #110d07 !important;
+  background:
+    linear-gradient(105deg, #a76525 0%, #e6af59 30%, #f2d18c 50%, #d7963f 73%, #a86428 100%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(89, 48, 13, 0.35), 0 10px 25px rgba(0, 0, 0, 0.42) !important;
+  font-weight: 900 !important;
+}
+
+html body #app .screen:not(#screen-intro) :is(
+  .secondary,
+  .icon-btn,
+  .ntn-equipment-back
+) {
+  border-color: var(--v142-line) !important;
+  color: var(--v142-gold-light) !important;
+  background: rgba(25, 26, 31, 0.9) !important;
+}
+
+/* Step 1 — city cards remain photographic but restrained and easy to read. */
+html body #app #screen-city .city-premium-page {
+  position: relative;
+  padding-bottom: 260px !important;
+}
+
+html body #app #screen-city .city-page-title {
+  color: var(--v142-ivory) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(35px, 9vw, 53px) !important;
+  line-height: 1 !important;
+}
+
+html body #app #screen-city .city-page-title em,
+html body #app #screen-city .city-page-title span {
+  color: var(--v142-gold-light) !important;
+}
+
+html body #app #screen-city .city-card {
+  border-color: var(--v142-line) !important;
+  border-radius: 18px !important;
+  background: var(--v142-panel-strong) !important;
+  box-shadow: var(--v142-shadow) !important;
+  overflow: hidden;
+}
+
+html body #app #screen-city .city-card--active {
+  border-color: var(--v142-gold-light) !important;
+  box-shadow: inset 0 0 0 1px rgba(240, 206, 139, 0.28), 0 16px 38px rgba(0, 0, 0, 0.42) !important;
+}
+
+html body #app #screen-city .city-card--soon {
+  opacity: 0.58 !important;
+  filter: saturate(0.45);
+}
+
+html body #app #screen-city .city-card__name {
+  color: var(--v142-ivory) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+}
+
+html body #app #screen-city .city-card__status--available {
+  color: #8cf2b8 !important;
+}
+
+/* Property and room tiles keep useful room photos and receive the approved gold frame. */
+html body #app #screen-property .page,
+html body #app .room-selection-screen .page,
+html body #app .order-method-screen .page {
+  padding-bottom: 270px !important;
+}
+
+html body #app .property-choice-card,
+html body #app .room-hub-card {
+  overflow: hidden;
+  border-width: 1px !important;
+}
+
+html body #app .property-choice-card strong,
+html body #app .room-hub-card strong {
+  color: var(--v142-ivory) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+}
+
+/* Work list and information screens stay dense enough to remain practical. */
+html body #app .app-room-screen .page,
+html body #app .app-info-screen .page,
+html body #app #screen-summary .page {
+  padding-bottom: 220px !important;
+}
+
+html body #app .app-task {
+  min-height: 112px;
+}
+
+html body #app .app-task strong,
+html body #app .app-info-card h3,
+html body #app .static-cart-row strong {
+  color: var(--v142-ivory) !important;
+}
+
+html body #app .app-task :is(small, p),
+html body #app .app-info-card p,
+html body #app .static-cart-row small {
+  color: var(--v142-muted) !important;
+}
+
+html body #app .app-task .app-task-price,
+html body #app .app-info-price-row strong,
+html body #app .summary-total-card strong {
+  color: var(--v142-gold-light) !important;
+}
+
+html body #app :is(.minimum-order-dock, .app-room-action, .cart-bar) {
+  border-top: 1px solid var(--v142-line-soft) !important;
+  background: linear-gradient(180deg, rgba(23, 24, 29, 0.96), rgba(11, 12, 15, 0.99)) !important;
+  box-shadow: 0 -16px 38px rgba(0, 0, 0, 0.42) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* Supplies and equipment: towel, candle and branded accessories sit behind a compact panel. */
+html body #app #screen-supplies-choice .supplies-choice-shell {
+  min-height: calc(100svh - var(--ntn-sitebar-h, 60px));
+  padding: clamp(24px, 6vw, 48px) 20px 290px !important;
+}
+
+html body #app #screen-supplies-choice .ntn-equipment-page-head {
+  max-width: 660px;
+  margin-inline: auto;
+}
+
+html body #app #screen-supplies-choice .ntn-equipment-page-head h2 {
+  color: var(--v142-ivory) !important;
+}
+
+html body #app #screen-supplies-choice .ntn-equipment-page-head p,
+html body #app #screen-supplies-choice .ntn-equipment-list small {
+  color: var(--v142-muted) !important;
+}
+
+html body #app #screen-supplies-choice .ntn-supplies-reference-panel {
+  border: 1px solid var(--v142-line) !important;
+  border-radius: 26px !important;
+  background: rgba(35, 36, 42, 0.98) !important;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.62) !important;
+}
+
+html body #app #screen-supplies-choice .supplies-choice-card {
+  border-color: var(--v142-line-soft) !important;
+  border-radius: 18px !important;
+  background: rgba(26, 27, 32, 0.96) !important;
+}
+
+html body #app #screen-supplies-choice .supplies-choice-card.is-selected,
+html body #app #screen-supplies-choice input:checked + .supplies-choice-card,
+html body #app #screen-supplies-choice .supplies-choice-card[aria-pressed="true"] {
+  border-color: var(--v142-gold-light) !important;
+  box-shadow: 0 0 0 1px rgba(240, 206, 139, 0.28), 0 0 22px rgba(216, 169, 87, 0.16) !important;
+}
+
+/* V143: selected supplies/equipment state remains unmistakably green on iOS and Android. */
+html body #app #screen-supplies-choice .ntn-supplies-reference-modal
+  .supplies-choice-card[aria-pressed="true"] .supplies-choice-radio {
+  border-color: #25ef7d !important;
+  background: #050b07 !important;
+  box-shadow: 0 0 0 2px rgba(37, 239, 125, 0.12), 0 0 18px rgba(37, 239, 125, 0.35) !important;
+}
+
+html body #app #screen-supplies-choice .ntn-supplies-reference-modal
+  .supplies-choice-card[aria-pressed="true"] .supplies-choice-radio::after {
+  color: #35f58a !important;
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  text-shadow: 0 0 11px rgba(53, 245, 138, 0.72) !important;
+}
+
+html body #app #screen-supplies-choice
+  .ntn-equipment-answer-have[aria-pressed="true"] {
+  color: #62f39a !important;
+  border-color: #32e27e !important;
+  background: #0a170f !important;
+  box-shadow: 0 0 0 2px rgba(50, 226, 126, 0.12), 0 0 18px rgba(50, 226, 126, 0.22) !important;
+}
+
+html body #app #screen-supplies-choice
+  .ntn-equipment-answer-have[aria-pressed="true"] .ntn-equipment-answer-mark {
+  color: #42f28a !important;
+  text-shadow: 0 0 12px rgba(66, 242, 138, 0.82) !important;
+}
+
+html body #app #screen-supplies-choice
+  .ntn-equipment-answer-missing[aria-pressed="true"] {
+  color: #f0c47d !important;
+  border-color: #cb9148 !important;
+  background: #1b140d !important;
+}
+
+/* Final steps receive breathing room so the décor is visible without reducing legibility. */
+html body #app :is(#screen-schedule, #screen-details, #screen-payment, #screen-confirmation) .page {
+  padding-bottom: 285px !important;
+}
+
+html body #app :is(#screen-schedule, #screen-details, #screen-payment, #screen-confirmation) :is(input, select, textarea) {
+  border-color: var(--v142-line-soft) !important;
+  color: var(--v142-ivory) !important;
+  background: rgba(30, 31, 37, 0.95) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+}
+
+html body #app .account-screen :is(input, select, textarea) {
+  border-color: var(--v142-line-soft) !important;
+  color: var(--v142-ivory) !important;
+  background: rgba(30, 31, 37, 0.95) !important;
+}
+
+html body #app .account-screen :is(input, select, textarea):focus {
+  border-color: var(--v142-gold-light) !important;
+  outline: 2px solid rgba(216, 169, 87, 0.18) !important;
+}
+
+html body #app :is(#screen-schedule, #screen-details, #screen-payment, #screen-confirmation) :is(input, select, textarea):focus {
+  border-color: var(--v142-gold-light) !important;
+  outline: 2px solid rgba(216, 169, 87, 0.18) !important;
+}
+
+html body #app #screen-confirmation .ntn-v142-decor {
+  height: min(43svh, 390px);
+  opacity: 1;
+}
+
+/* Account and information sections follow the same visual language. */
+html body #app .account-screen > .account-topbar,
+html body #app #screen-account > .account-topbar {
+  min-height: 66px !important;
+  height: 66px !important;
+  padding: 8px 14px !important;
+}
+
+html body #app .account-screen > .account-topbar .topbar-title,
+html body #app #screen-account > .account-topbar .topbar-title {
+  min-height: 48px !important;
+  height: 48px !important;
+}
+
+html body #app .account-screen > .account-topbar .topbar-title::before,
+html body #app #screen-account > .account-topbar .topbar-title::before {
+  content: none !important;
+  display: none !important;
+}
+
+html body #app #screen-account > .account-topbar .topbar-title strong,
+html body #app #screen-account > .account-topbar .topbar-title span {
+  display: block !important;
+}
+
+html body #app .account-screen .page,
+html body #app #screen-account .account-clean-page {
+  padding-bottom: 260px !important;
+}
+
+/* Mobile collision protection for the centered mark. */
+@media (max-width: 430px) {
+  html body #ntnSiteControls .ntn-menu-trigger {
+    min-width: 78px !important;
+    padding-inline: 11px !important;
+  }
+
+  html body #ntnSiteControls .ntn-account-trigger {
+    max-width: 132px !important;
+  }
+
+  html body #ntnSiteControls .ntn-sitebar-brand {
+    width: 78px !important;
+  }
+
+  html body #ntnSiteControls .ntn-sitebar-brand img {
+    width: 75px !important;
+    height: 58px !important;
+  }
+
+  html body #app .ntn-v142-decor {
+    background-position: 58% bottom;
+  }
+}
+
+@media (max-width: 360px) {
+  html body #ntnSiteControls .ntn-sitebar-brand {
+    display: none !important;
+  }
+}
+
+/* On desktop the decorative scene occupies only the right/lower side of the canvas. */
+@media (min-width: 1024px) {
+  html body #app .ntn-v142-decor {
+    left: auto;
+    right: 0;
+    width: min(58vw, 900px);
+    height: min(48svh, 470px);
+    transform: none;
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 30%, #000 100%),
+      linear-gradient(to right, transparent 0%, #000 32%, #000 100%);
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 30%, #000 100%),
+      linear-gradient(to right, transparent 0%, #000 32%, #000 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+
+  html body #app .ntn-v142-decor__copy {
+    right: clamp(38px, 5vw, 88px);
+    bottom: 34px;
+    max-width: 360px;
+    font-size: 29px;
+  }
+
+  html body #app .screen:not(#screen-intro) .page,
+  html body #app #screen-city .city-premium-page,
+  html body #app #screen-supplies-choice .supplies-choice-shell {
+    position: relative;
+  }
+
+  html body #app .screen:not(#screen-intro) .page::before,
+  html body #app #screen-city .city-premium-page::before,
+  html body #app #screen-supplies-choice .supplies-choice-shell::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(66%, 760px);
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(9, 10, 13, 0.95), rgba(9, 10, 13, 0.68) 72%, transparent);
+  }
+
+  html body #ntnSiteControls .ntn-sitebar-brand {
+    width: 112px !important;
+  }
+
+  html body #ntnSiteControls .ntn-sitebar-brand img {
+    width: 105px !important;
+    height: 78px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body #app .screen:not(#screen-intro) *,
+  html body #ntnSiteControls * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* V144 — stronger photographic lower scenes following the approved collage. */
+html body #app .screen:not(#screen-intro) {
+  position: relative !important;
+  overflow-x: clip !important;
+}
+
+html body #app .ntn-v142-decor {
+  position: absolute !important;
+  bottom: 0 !important;
+  width: min(100%, 820px) !important;
+  height: clamp(335px, 43svh, 440px) !important;
+  opacity: 1 !important;
+  background-position: 58% bottom !important;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.72) 13%, #000 29%, #000 100%) !important;
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.72) 13%, #000 29%, #000 100%) !important;
+}
+
+html body #app .ntn-v142-decor::before {
+  background:
+    linear-gradient(to bottom, rgba(9, 10, 13, 0.62), transparent 31%),
+    linear-gradient(90deg, rgba(8, 9, 11, 0.30), transparent 46%) !important;
+}
+
+html body #app .ntn-v142-decor--single-rose {
+  height: clamp(300px, 39svh, 400px) !important;
+  background-position: 62% bottom !important;
+}
+
+html body #app .ntn-v142-decor--bouquet {
+  height: clamp(350px, 46svh, 470px) !important;
+  background-position: 59% bottom !important;
+}
+
+html body #app #screen-city .city-premium-page,
+html body #app #screen-property .page,
+html body #app .order-method-screen .page,
+html body #app .room-selection-screen .page,
+html body #app .room-package-menu-screen .page,
+html body #app .whole-property-screen .page {
+  padding-bottom: 390px !important;
+}
+
+html body #app .app-room-screen .page,
+html body #app .app-info-screen .page,
+html body #app #screen-summary .page {
+  padding-bottom: 370px !important;
+}
+
+html body #app #screen-supplies-choice .supplies-choice-shell,
+html body #app :is(#screen-schedule, #screen-details, #screen-payment, #screen-confirmation) .page,
+html body #app .account-screen .page,
+html body #app .ntn-corporate-screen .page {
+  padding-bottom: 390px !important;
+}
+
+html body #app .app-room-screen .ntn-v142-decor__copy,
+html body #app .app-info-screen .ntn-v142-decor__copy,
+html body #app #screen-summary .ntn-v142-decor__copy,
+html body #app .room-package-menu-screen .ntn-v142-decor__copy,
+html body #app .room-selection-screen .ntn-v142-decor__copy,
+html body #app .whole-property-screen .ntn-v142-decor__copy {
+  display: block !important;
+}
+
+html body #app :is(
+  .app-room-screen,
+  .room-selection-screen,
+  .room-package-menu-screen,
+  .whole-property-screen,
+  #screen-summary
+) .ntn-v142-decor__copy {
+  right: 20px !important;
+  bottom: 150px !important;
+}
+
+html body #app .app-info-screen .ntn-v142-decor__copy {
+  right: 18px !important;
+  bottom: 24px !important;
+}
+
+@media (max-width: 430px) {
+  html body #app .ntn-v142-decor__copy {
+    max-width: 72vw !important;
+    font-size: clamp(20px, 5.7vw, 26px) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  html body #app .ntn-v142-decor {
+    left: auto !important;
+    right: 0 !important;
+    width: min(61vw, 960px) !important;
+    height: min(53svh, 520px) !important;
+    transform: none !important;
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 24%, #000 100%),
+      linear-gradient(to right, transparent 0%, #000 25%, #000 100%) !important;
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 24%, #000 100%),
+      linear-gradient(to right, transparent 0%, #000 25%, #000 100%) !important;
+  }
+
+  html body #app :is(
+    .app-room-screen,
+    .room-selection-screen,
+    .room-package-menu-screen,
+    .whole-property-screen,
+    #screen-summary
+  ) .ntn-v142-decor__copy {
+    right: clamp(42px, 5vw, 90px) !important;
+    bottom: 145px !important;
+  }
+
+}

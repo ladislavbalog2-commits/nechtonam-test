@@ -1,0 +1,1718 @@
+/*
+ * NECH TO NÁM v234 — Midnight Velvet
+ * Finální sjednocení úvodu a prvních tří kroků objednávky.
+ * Logika, formuláře a stav objednávky zůstávají beze změny.
+ */
+
+:root {
+  --mv-night: #03111d;
+  --mv-night-soft: #071a2a;
+  --mv-panel: #0a1a27;
+  --mv-panel-deep: #06131f;
+  --mv-ivory: #f7f2eb;
+  --mv-muted: #c3c5c8;
+  --mv-champagne: #e4bd86;
+  --mv-champagne-soft: #f1d2a5;
+  --mv-gold-line: rgba(235, 193, 132, .82);
+  --mv-green: #72e75d;
+  --mv-shadow: 0 18px 45px rgba(0, 0, 0, .36);
+  --mv-serif: Georgia, "Times New Roman", serif;
+  --mv-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --ntn-sitebar-h: calc(66px + env(safe-area-inset-top));
+}
+
+html,
+body {
+  background: #020b13 !important;
+}
+
+html body #app.app {
+  width: min(100%, 864px) !important;
+  max-width: 864px !important;
+  color: var(--mv-ivory) !important;
+  background: var(--mv-night) !important;
+  box-shadow: 0 0 80px rgba(0, 0, 0, .72) !important;
+}
+
+/* --------------------------------------------------------------------------
+   ÚVOD — schválený obraz je zachovaný v plném poměru 9:16.
+   Funkční HTML tlačítka zůstávají viditelná a jasně ovladatelná.
+   -------------------------------------------------------------------------- */
+
+html body.ntn-global-intro #ntnSiteControls .ntn-sitebar {
+  display: flex !important;
+}
+html body.ntn-global-intro #ntnSiteControls .ntn-sitebar::before {
+  display: none !important;
+}
+html body.ntn-global-intro #ntnSiteControls .ntn-sitebar-brand,
+html body.ntn-global-intro #ntnSiteControls .ntn-account-trigger {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+html body #screen-intro.intro-poster-screen,
+html body #screen-intro .intro-poster-stage,
+html body #screen-intro .intro-poster-frame {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: var(--mv-night) !important;
+  box-shadow: none !important;
+}
+
+html body #screen-intro .intro-poster-frame {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+html body #screen-intro .intro-poster-picture,
+html body #screen-intro .intro-poster-image {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+html body #screen-intro .intro-poster-image {
+  object-fit: cover !important;
+  object-position: center top !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+html body #screen-intro .intro-account-cta {
+  position: absolute !important;
+  z-index: 92 !important;
+  top: max(13px, calc(env(safe-area-inset-top) + 8px)) !important;
+  right: max(13px, calc(env(safe-area-inset-right) + 10px)) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  min-height: 46px !important;
+  padding: 4px 15px 4px 8px !important;
+  border: 1.35px solid rgba(240, 201, 143, .90) !important;
+  border-radius: 999px !important;
+  color: var(--mv-ivory) !important;
+  -webkit-text-fill-color: var(--mv-ivory) !important;
+  text-decoration: none !important;
+  background: linear-gradient(180deg, rgba(8, 27, 42, .90), rgba(2, 14, 24, .93)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 8px 22px rgba(0, 0, 0, .34), 0 0 17px rgba(230, 186, 123, .12) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+  font: 700 16px/1 var(--mv-serif) !important;
+  letter-spacing: 0 !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
+  touch-action: manipulation !important;
+}
+
+html body #screen-intro .intro-account-cta svg {
+  width: 29px !important;
+  height: 29px !important;
+  padding: 5px !important;
+  border: 1px solid rgba(244, 211, 161, .86) !important;
+  border-radius: 50% !important;
+  color: var(--mv-champagne-soft) !important;
+}
+
+html body #screen-intro .intro-account-cta:focus-visible {
+  outline: 3px solid rgba(248, 218, 170, .88) !important;
+  outline-offset: 3px !important;
+}
+
+html body #screen-intro .intro-account-cta:active {
+  transform: scale(.98) !important;
+}
+
+@media (max-width: 1023px) {
+  html body #screen-intro.intro-poster-screen,
+  html body #screen-intro .intro-poster-stage,
+  html body #screen-intro .intro-poster-frame {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    max-height: 100svh !important;
+  }
+}
+
+@media (max-width: 390px) {
+
+  html body #screen-intro .intro-account-cta {
+    min-height: 42px !important;
+    padding: 3px 12px 3px 6px !important;
+    font-size: 15px !important;
+  }
+
+  html body #screen-intro .intro-account-cta svg {
+    width: 27px !important;
+    height: 27px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  html body #screen-intro.intro-poster-screen,
+  html body #screen-intro .intro-poster-stage {
+    width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+  }
+
+  html body #screen-intro .intro-poster-stage {
+    position: relative !important;
+    display: grid !important;
+    place-items: center !important;
+    isolation: isolate !important;
+    overflow: hidden !important;
+  }
+
+  html body #screen-intro .intro-poster-stage::before {
+    content: "" !important;
+    position: absolute !important;
+    z-index: -1 !important;
+    inset: -42px !important;
+    display: block !important;
+    background:
+      linear-gradient(rgba(2, 13, 23, .58), rgba(2, 13, 23, .76)),
+      url("images/intro-midnight-velvet-v265.webp") center 34% / cover no-repeat !important;
+    filter: blur(28px) saturate(.72) brightness(.48) !important;
+    transform: scale(1.08) !important;
+  }
+
+  html body #screen-intro .intro-poster-stage::after {
+    content: "" !important;
+    position: absolute !important;
+    z-index: 0 !important;
+    inset: 0 !important;
+    display: block !important;
+    background: linear-gradient(90deg, rgba(1, 8, 14, .48), transparent 32%, transparent 68%, rgba(1, 8, 14, .48)) !important;
+    pointer-events: none !important;
+  }
+
+  html body #screen-intro .intro-poster-frame {
+    z-index: 1 !important;
+    width: min(100vw, calc(100vh * .5625)) !important;
+    height: 100vh !important;
+    max-width: none !important;
+    max-height: 100vh !important;
+    aspect-ratio: 9 / 16 !important;
+    box-shadow: 0 0 54px rgba(0, 0, 0, .52) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SPOLEČNÁ NAVIGACE — přesně jedna paleta, jeden rytmus a jedna hierarchie.
+   -------------------------------------------------------------------------- */
+
+html body #ntnSiteControls .ntn-sitebar {
+  width: min(100%, 864px) !important;
+  max-width: 864px !important;
+  height: var(--ntn-sitebar-h) !important;
+  min-height: var(--ntn-sitebar-h) !important;
+  padding: calc(8px + env(safe-area-inset-top)) 18px 8px !important;
+}
+
+html body #ntnSiteControls .ntn-sitebar::before {
+  border-bottom: 1px solid rgba(226, 189, 134, .18) !important;
+  background:
+    radial-gradient(circle at 87% 20%, rgba(232, 192, 128, .06), transparent 24%),
+    linear-gradient(180deg, rgba(7, 24, 38, .99), rgba(3, 16, 28, .985)) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .24) !important;
+  opacity: 1 !important;
+}
+
+html body #ntnSiteControls .ntn-menu-trigger,
+html body #ntnSiteControls .ntn-account-trigger {
+  min-height: 48px !important;
+  border: 1.35px solid rgba(233, 192, 132, .80) !important;
+  color: var(--mv-ivory) !important;
+  background: rgba(4, 18, 29, .66) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04), 0 7px 18px rgba(0, 0, 0, .20) !important;
+}
+
+html body #ntnSiteControls .ntn-menu-trigger {
+  min-width: 100px !important;
+  gap: 10px !important;
+  font-family: var(--mv-serif) !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+
+html body #ntnSiteControls .ntn-menu-trigger svg {
+  width: 23px !important;
+  height: 23px !important;
+  stroke: var(--mv-champagne-soft) !important;
+  stroke-width: 1.65 !important;
+}
+
+html body #ntnSiteControls .ntn-account-trigger {
+  min-width: 146px !important;
+  max-width: 176px !important;
+  font-family: var(--mv-serif) !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+
+html body #ntnSiteControls .ntn-account-icon {
+  width: 39px !important;
+  height: 39px !important;
+  min-width: 39px !important;
+  border: 1.2px solid rgba(238, 202, 150, .84) !important;
+  color: var(--mv-champagne-soft) !important;
+  background: rgba(3, 15, 25, .82) !important;
+  box-shadow: none !important;
+}
+
+html body #ntnSiteControls .ntn-sitebar-brand {
+  top: calc(5px + env(safe-area-inset-top)) !important;
+  width: 94px !important;
+  height: 56px !important;
+}
+
+html body #ntnSiteControls .ntn-sitebar-brand img {
+  width: 92px !important;
+  height: 63px !important;
+  max-width: 92px !important;
+  max-height: 63px !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .46)) !important;
+}
+
+html body #app .screen:not(#screen-intro) {
+  padding-top: var(--ntn-sitebar-h) !important;
+}
+
+html body #app #screen-property > .topbar,
+html body #app .room-selection-screen > .topbar,
+html body #app #screen-city .city-html-stepbar {
+  position: relative !important;
+  z-index: 4 !important;
+  min-height: 82px !important;
+  height: 82px !important;
+  padding: 9px 24px !important;
+  border-top: 0 !important;
+  border-bottom: 1px solid rgba(226, 190, 137, .14) !important;
+  background: linear-gradient(180deg, rgba(5, 20, 33, .96), rgba(3, 15, 26, .94)) !important;
+  box-shadow: none !important;
+}
+
+html body #app #screen-property > .topbar,
+html body #app .room-selection-screen > .topbar {
+  grid-template-columns: 58px minmax(0, 1fr) 58px !important;
+}
+
+html body #app #screen-city .city-html-stepbar {
+  display: grid !important;
+  grid-template-columns: 58px minmax(0, 1fr) 58px !important;
+  align-items: center !important;
+}
+
+html body #app #screen-property .icon-btn.ghost,
+html body #app .room-selection-screen .icon-btn.ghost,
+html body #app #screen-city .city-html-back {
+  width: 54px !important;
+  height: 54px !important;
+  min-width: 54px !important;
+  min-height: 54px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 0 5px !important;
+  border: 1.35px solid rgba(232, 188, 125, .85) !important;
+  border-radius: 50% !important;
+  color: var(--mv-champagne-soft) !important;
+  background: rgba(3, 16, 27, .68) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .20), inset 0 1px 0 rgba(255, 255, 255, .035) !important;
+  font: 400 43px/1 Arial, sans-serif !important;
+  text-decoration: none !important;
+}
+
+html body #app #screen-property .topbar-title,
+html body #app .room-selection-screen .topbar-title,
+html body #app #screen-city .city-html-stepcopy {
+  min-height: 60px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  text-align: center !important;
+}
+
+html body #app #screen-property .topbar-title::before,
+html body #app .room-selection-screen .topbar-title::before {
+  content: none !important;
+  display: none !important;
+}
+
+html body #app #screen-property .topbar-title strong,
+html body #app .room-selection-screen .topbar-title strong,
+html body #app #screen-city .city-html-stepcopy strong {
+  color: var(--mv-ivory) !important;
+  font: 700 27px/1.05 var(--mv-serif) !important;
+  letter-spacing: -.015em !important;
+}
+
+html body #app #screen-property .topbar-title span,
+html body #app .room-selection-screen .topbar-title span,
+html body #app #screen-city .city-html-stepcopy span {
+  color: #b9bac0 !important;
+  font: 400 18px/1.1 var(--mv-sans) !important;
+}
+
+html body #app #screen-property > .progress,
+html body #app .room-selection-screen > .progress,
+html body #app #screen-city .city-html-progress {
+  position: relative !important;
+  z-index: 4 !important;
+  width: 100% !important;
+  height: 5px !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  background: rgba(184, 194, 205, .28) !important;
+}
+
+html body #app #screen-property > .progress > span,
+html body #app .room-selection-screen > .progress > span,
+html body #app #screen-city .city-html-progress > span {
+  display: block !important;
+  height: 100% !important;
+  border-radius: 0 999px 999px 0 !important;
+  background: linear-gradient(90deg, #b98345, #f0d3a0) !important;
+  box-shadow: 0 0 12px rgba(240, 202, 142, .62) !important;
+}
+
+html body #app #screen-city .city-html-progress > span { width: 18% !important; }
+html body #app #screen-property > .progress > span { width: 32% !important; }
+html body #app .room-selection-screen > .progress > span { width: 50% !important; }
+
+/* --------------------------------------------------------------------------
+   SPOLEČNÉ POZADÍ — půlnoční modř, měkké zlato, žádná křiklavá čerň.
+   -------------------------------------------------------------------------- */
+
+html body #app #screen-city,
+html body #app #screen-property,
+html body #app .room-selection-screen {
+  isolation: isolate !important;
+  color: var(--mv-ivory) !important;
+  background:
+    radial-gradient(ellipse at 102% 13%, rgba(224, 178, 106, .12), transparent 23rem),
+    radial-gradient(ellipse at -8% 94%, rgba(196, 142, 73, .09), transparent 20rem),
+    linear-gradient(156deg, #071b2b 0%, #04131f 46%, #020d17 100%) !important;
+}
+
+html body #app #screen-city::after,
+html body #app #screen-property::after,
+html body #app .room-selection-screen::after {
+  content: "" !important;
+  position: fixed !important;
+  z-index: 0 !important;
+  inset: var(--ntn-sitebar-h) 0 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  opacity: .76 !important;
+  background:
+    radial-gradient(circle at 95% 9%, rgba(246, 207, 146, .30) 0 2px, transparent 3px),
+    radial-gradient(circle at 91% 13%, rgba(222, 169, 91, .22) 0 4px, transparent 7px),
+    radial-gradient(circle at 97% 18%, rgba(248, 215, 165, .18) 0 3px, transparent 7px),
+    radial-gradient(circle at 88% 20%, rgba(222, 169, 91, .16) 0 6px, transparent 11px),
+    radial-gradient(circle at 93% 25%, rgba(246, 207, 146, .12) 0 5px, transparent 12px),
+    radial-gradient(ellipse at 98% 17%, rgba(207, 153, 81, .12), transparent 17rem),
+    linear-gradient(132deg, transparent 0 74%, rgba(255, 255, 255, .018) 74.3%, transparent 74.8%) !important;
+  filter: blur(.2px) !important;
+}
+
+html body #app #screen-city > .ntn-v142-decor,
+html body #app #screen-property > .ntn-v142-decor,
+html body #app .room-selection-screen > .ntn-v142-decor {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   KROK 1 — MĚSTA
+   -------------------------------------------------------------------------- */
+
+html body #app #screen-city .city-html-page {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100% !important;
+  max-width: 864px !important;
+  margin: 0 auto !important;
+  padding: 0 0 32px !important;
+  background: transparent !important;
+}
+
+html body #app #screen-city .city-html-hero {
+  position: relative !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 30px 34px 22px !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html body #app #screen-city .city-html-hero::before,
+html body #app #screen-city .city-html-hero::after,
+html body #app #screen-city .city-html-script {
+  content: none !important;
+  display: none !important;
+}
+
+html body #app #screen-city .city-html-eyebrow {
+  position: relative !important;
+  z-index: 1 !important;
+  margin: 0 0 12px !important;
+  color: var(--mv-champagne-soft) !important;
+  font: 650 14px/1 var(--mv-sans) !important;
+  letter-spacing: .27em !important;
+}
+
+html body #app #screen-city .city-html-hero h1 {
+  position: relative !important;
+  z-index: 1 !important;
+  max-width: 760px !important;
+  margin: 0 !important;
+  color: var(--mv-ivory) !important;
+  font: 700 clamp(48px, 7vw, 68px)/.96 var(--mv-serif) !important;
+  letter-spacing: -.035em !important;
+  text-shadow: 0 5px 26px rgba(0, 0, 0, .31) !important;
+}
+
+html body #app #screen-city .city-html-hero h1 span {
+  color: var(--mv-champagne-soft) !important;
+  -webkit-text-fill-color: var(--mv-champagne-soft) !important;
+  background: none !important;
+}
+
+html body #app #screen-city .city-html-hero p {
+  position: relative !important;
+  z-index: 1 !important;
+  max-width: 760px !important;
+  margin: 14px 0 0 !important;
+  color: #e2e1df !important;
+  font: 400 22px/1.38 var(--mv-sans) !important;
+}
+
+/* Hero kroku 1 je přesný schválený řez; text zůstává v HTML pro čtečky. */
+html body #app #screen-city .city-html-hero {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: 864 / 252 !important;
+  margin: 18px 0 0 !important;
+  padding: 0 !important;
+  background-color: var(--mv-night) !important;
+  background-image: url("images/city-midnight-velvet-reference-v234.jpeg") !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% auto !important;
+  background-position: center 25.95% !important;
+}
+
+html body #app #screen-city .city-html-hero > .city-html-eyebrow,
+html body #app #screen-city .city-html-hero > h1,
+html body #app #screen-city .city-html-hero > p {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+html body #app #screen-city .city-html-grid {
+  position: relative !important;
+  z-index: 2 !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+  margin: 8px 0 0 !important;
+  padding: 0 24px !important;
+  background: transparent !important;
+}
+
+html body #app #screen-city .city-html-card {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 156px minmax(170px, .82fr) minmax(270px, 1.35fr) !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-height: 184px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1.55px solid var(--mv-gold-line) !important;
+  border-radius: 27px !important;
+  color: var(--mv-ivory) !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  background: linear-gradient(115deg, rgba(5, 20, 32, .99) 0 50%, rgba(5, 20, 32, .68) 65%, rgba(5, 20, 32, .10) 100%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035), 0 15px 32px rgba(0, 0, 0, .30), 0 0 18px rgba(229, 181, 111, .07) !important;
+  appearance: none !important;
+  cursor: pointer !important;
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease !important;
+}
+
+html body #app #screen-city .city-html-card:hover,
+html body #app #screen-city .city-html-card:focus-visible {
+  border-color: rgba(247, 212, 160, .98) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .045), 0 17px 36px rgba(0, 0, 0, .34), 0 0 22px rgba(235, 190, 125, .15) !important;
+}
+
+html body #app #screen-city .city-html-card:active {
+  transform: translateY(1px) scale(.995) !important;
+}
+
+html body #app #screen-city .city-html-icon {
+  position: relative !important;
+  z-index: 3 !important;
+  width: 110px !important;
+  height: 110px !important;
+  margin: 0 0 0 28px !important;
+  display: grid !important;
+  place-items: center !important;
+  border: 1.6px solid rgba(239, 200, 143, .90) !important;
+  border-radius: 50% !important;
+  background: rgba(3, 17, 28, .84) !important;
+  box-shadow: 0 9px 22px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .035) !important;
+}
+
+html body #app #screen-city .city-html-icon svg {
+  display: none !important;
+}
+
+html body #app #screen-city .city-html-icon::before {
+  content: "" !important;
+  display: block !important;
+  width: 57px !important;
+  height: 67px !important;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 58' fill='none' stroke='%23efd0a0' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M24 55S42 36 42 21a18 18 0 1 0-36 0c0 15 18 34 18 34Z'/%3E%3Ccircle cx='24' cy='21' r='6'/%3E%3C/svg%3E") center / contain no-repeat !important;
+}
+
+html body #app #screen-city .city-html-copy {
+  position: relative !important;
+  z-index: 3 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  gap: 13px !important;
+  min-width: 0 !important;
+  padding: 20px 10px 20px 0 !important;
+}
+
+html body #app #screen-city .city-html-copy strong {
+  color: var(--mv-ivory) !important;
+  font: 700 clamp(29px, 4.4vw, 40px)/1.02 var(--mv-serif) !important;
+  letter-spacing: -.025em !important;
+  text-wrap: balance !important;
+}
+
+html body #app #screen-city .city-html-copy small {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #c8cbd0 !important;
+  background: transparent !important;
+  font: 400 18px/1.15 var(--mv-sans) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+html body #app #screen-city .city-html-copy small i {
+  width: 15px !important;
+  height: 15px !important;
+  flex: 0 0 15px !important;
+  border-radius: 50% !important;
+  background: #bcc5cf !important;
+  box-shadow: none !important;
+}
+
+html body #app #screen-city .city-html-copy small.is-live {
+  color: #d8dde2 !important;
+}
+
+html body #app #screen-city .city-html-copy small.is-live i {
+  background: var(--mv-green) !important;
+  box-shadow: 0 0 13px rgba(114, 231, 93, .50) !important;
+}
+
+html body #app #screen-city .city-html-photo {
+  position: relative !important;
+  align-self: stretch !important;
+  min-height: 184px !important;
+  height: auto !important;
+  overflow: hidden !important;
+}
+
+html body #app #screen-city .city-html-photo::before {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 2 !important;
+  inset: 0 !important;
+  display: block !important;
+  background: linear-gradient(90deg, var(--mv-panel-deep) 0%, rgba(6, 19, 31, .79) 15%, rgba(6, 19, 31, .25) 39%, transparent 67%) !important;
+  pointer-events: none !important;
+}
+
+html body #app #screen-city .city-html-photo::after {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 2 !important;
+  inset: 0 !important;
+  background: linear-gradient(180deg, rgba(2, 10, 17, .08), transparent 48%, rgba(2, 10, 17, .24)) !important;
+  pointer-events: none !important;
+}
+
+html body #app #screen-city .city-html-photo img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  filter: saturate(.78) brightness(.86) contrast(1.06) !important;
+  transform: scale(1.015) !important;
+}
+
+/* Schválené městské dlaždice jsou čtené z jednoho bezeztrátově vloženého
+   referenčního obrazu. Každý HTML odkaz zůstává samostatný a přístupný. */
+html body #app #screen-city .city-html-card {
+  min-height: 0 !important;
+  height: auto !important;
+  aspect-ratio: 4.36 / 1 !important;
+  border-color: transparent !important;
+  background-color: var(--mv-panel-deep) !important;
+  background-image: url("images/city-midnight-velvet-reference-v234.jpeg") !important;
+  background-repeat: no-repeat !important;
+  background-size: 105.9% auto !important;
+}
+
+html body #app #screen-city .city-html-card[data-city="klasterec"] { background-position: 50% 44.1% !important; }
+html body #app #screen-city .city-html-card[data-city="kadan"] { background-position: 50% 58.8% !important; }
+html body #app #screen-city .city-html-card[data-city="chomutov"] { background-position: 50% 73.15% !important; }
+html body #app #screen-city .city-html-card[data-city="jirkov"] { background-position: 50% 87.4% !important; }
+
+html body #app #screen-city .city-html-card > .city-html-icon,
+html body #app #screen-city .city-html-card > .city-html-copy,
+html body #app #screen-city .city-html-card > .city-html-photo {
+  display: none !important;
+}
+
+html body #app #screen-city .city-html-footer,
+html body #app #screen-property .property-v208-footer {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+html body #app #screen-city .city-html-footer {
+  display: grid !important;
+  grid-template-columns: 1fr auto 1fr !important;
+  align-items: center !important;
+  gap: 22px !important;
+  margin: 14px 0 0 !important;
+  padding: 46px 30px 26px !important;
+  background: transparent !important;
+}
+
+html body #app #screen-city .city-html-footer > span {
+  height: 1.5px !important;
+  background: linear-gradient(90deg, transparent, var(--mv-champagne)) !important;
+}
+
+html body #app #screen-city .city-html-footer > span:nth-of-type(2) {
+  background: linear-gradient(90deg, var(--mv-champagne), transparent) !important;
+}
+
+html body #app #screen-city .city-html-footer strong {
+  color: var(--mv-champagne) !important;
+  font: 700 27px/1 var(--mv-serif) !important;
+  letter-spacing: .14em !important;
+}
+
+html body #app #screen-city .city-html-footer p {
+  grid-column: 1 / -1 !important;
+  margin: -1px 0 0 !important;
+  color: #e8e6e3 !important;
+  font: 500 15px/1.2 var(--mv-sans) !important;
+  letter-spacing: .22em !important;
+}
+
+html body #app #screen-city .city-html-footer {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 864 / 165 !important;
+  margin: 14px 0 0 !important;
+  padding: 0 !important;
+  background-color: var(--mv-night) !important;
+  background-image: url("images/city-midnight-velvet-reference-v234.jpeg") !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% auto !important;
+  background-position: center 100% !important;
+}
+
+html body #app #screen-city .city-html-footer > span,
+html body #app #screen-city .city-html-footer > strong,
+html body #app #screen-city .city-html-footer > p {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   KROK 2 — NEMOVITOST
+   -------------------------------------------------------------------------- */
+
+html body #app #screen-property .page.narrow.property-v208-shell {
+  position: relative !important;
+  z-index: 2 !important;
+  width: min(calc(100% - 46px), 818px) !important;
+  max-width: 818px !important;
+  margin: 0 auto !important;
+  padding: 34px 0 38px !important;
+  background: transparent !important;
+}
+
+html body #app #screen-property .property-v208-hero,
+html body #app #screen-property .property-v208-grid,
+html body #app #screen-property .property-v208-footer {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+html body #app #screen-property .property-v208-hero {
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+html body #app #screen-property .property-v208-hero img,
+html body #app #screen-property .property-v208-card img,
+html body #app #screen-property .property-v208-footer img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-width: none !important;
+  filter: saturate(.80) brightness(.92) contrast(1.04) !important;
+}
+
+html body #app #screen-property .property-v208-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 22px !important;
+  margin: 18px 0 0 !important;
+}
+
+html body #app #screen-property .property-v208-card {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 26px !important;
+  background: var(--mv-panel-deep) !important;
+  box-shadow: var(--mv-shadow), 0 0 18px rgba(231, 187, 124, .09) !important;
+  transition: transform .16s ease, filter .16s ease, box-shadow .16s ease !important;
+}
+
+html body #app #screen-property .property-v208-card:hover,
+html body #app #screen-property .property-v208-card:focus-visible {
+  filter: brightness(1.045) !important;
+  box-shadow: 0 20px 42px rgba(0, 0, 0, .39), 0 0 24px rgba(236, 196, 136, .15) !important;
+}
+
+html body #app #screen-property .property-v208-card:active {
+  transform: translateY(1px) scale(.995) !important;
+}
+
+html body #app #screen-property .property-v208-footer {
+  margin: 42px 0 0 !important;
+  padding: 0 !important;
+  opacity: .94 !important;
+}
+
+/* Přesné schválené řezy kroku 2, stále uvnitř skutečných HTML odkazů. */
+html body #app #screen-property .property-v208-hero,
+html body #app #screen-property .property-v208-card,
+html body #app #screen-property .property-v208-footer {
+  min-height: 0 !important;
+  height: auto !important;
+  background-color: var(--mv-panel-deep) !important;
+  
+  background-repeat: no-repeat !important;
+}
+
+html body #app #screen-property .property-v208-hero {
+  aspect-ratio: 810 / 330 !important;
+  background-size: 106.67% auto !important;
+  background-position: 52% 29.35% !important;
+}
+
+html body #app #screen-property .property-v208-card[data-property="flat"] {
+  aspect-ratio: 814 / 266 !important;
+  background-size: 106.14% auto !important;
+  background-position: 50% 54.25% !important;
+}
+
+html body #app #screen-property .property-v208-card[data-property="house"] {
+  aspect-ratio: 814 / 267 !important;
+  background-size: 106.14% auto !important;
+  background-position: 50% 77.23% !important;
+}
+
+html body #app #screen-property .property-v208-footer {
+  aspect-ratio: 810 / 153 !important;
+  background-size: 106.67% auto !important;
+  background-position: 50% 95.8% !important;
+}
+
+html body #app #screen-property .property-v208-hero > img,
+html body #app #screen-property .property-v208-card > img,
+html body #app #screen-property .property-v208-footer > img {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   KROK 3 — MÍSTNOSTI
+   -------------------------------------------------------------------------- */
+
+html body #app .room-selection-screen {
+  padding-bottom: 50px !important;
+}
+
+html body #app .room-selection-screen > .page {
+  position: relative !important;
+  z-index: 2 !important;
+  width: min(calc(100% - 46px), 818px) !important;
+  max-width: 818px !important;
+  margin: 0 auto !important;
+  padding: 28px 0 78px !important;
+  background: transparent !important;
+}
+
+html body #app .room-selection-screen .page > .eyebrow {
+  margin: 0 0 12px !important;
+  color: var(--mv-champagne-soft) !important;
+  font: 650 14px/1 var(--mv-sans) !important;
+  letter-spacing: .27em !important;
+  text-transform: uppercase !important;
+}
+
+html body #app .room-selection-screen .page > h2 {
+  display: block !important;
+  max-width: 780px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--mv-ivory) !important;
+  font: 700 clamp(48px, 6.9vw, 67px)/.96 var(--mv-serif) !important;
+  letter-spacing: -.035em !important;
+  text-shadow: 0 5px 25px rgba(0, 0, 0, .30) !important;
+}
+
+html body #app .room-selection-screen .page > h2 .mv-room-title-line,
+html body #app .room-selection-screen .page > h2 .step3-gold-word {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  text-fill-color: initial !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+html body #app .room-selection-screen .page > h2 .mv-room-title-line {
+  color: var(--mv-ivory) !important;
+}
+
+html body #app .room-selection-screen .page > h2 .step3-gold-word {
+  color: var(--mv-champagne-soft) !important;
+}
+
+html body #app .room-selection-screen .page > .lead {
+  max-width: 760px !important;
+  margin: 14px 0 25px !important;
+  color: #e0e0df !important;
+  font: 400 22px/1.38 var(--mv-sans) !important;
+}
+
+/* Přesná schválená titulní část místností; přístupný nadpis zůstává v DOM. */
+html body #app .room-selection-screen > .page::before {
+  content: "" !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 816 / 260 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  
+  background-repeat: no-repeat !important;
+  background-size: 105.9% auto !important;
+  background-position: 50% 19.85% !important;
+}
+
+html body #app .room-selection-screen .page > .eyebrow,
+html body #app .room-selection-screen .page > h2,
+html body #app .room-selection-screen .page > .lead {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+html body #app .room-selection-screen .card-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-items: stretch !important;
+  gap: 14px !important;
+  width: 100% !important;
+  margin: 10px 0 0 !important;
+  padding: 0 !important;
+}
+
+html body #app .room-selection-screen .room-hub-card {
+  --ntn-scroll-scale: 1 !important;
+  --ntn-scroll-lift: 0px !important;
+  position: relative !important;
+  isolation: isolate !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  aspect-ratio: 1.02 / 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1.55px solid rgba(240, 204, 153, .88) !important;
+  border-radius: 18px !important;
+  color: var(--mv-ivory) !important;
+  text-decoration: none !important;
+  background: var(--mv-panel-deep) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035), 0 13px 28px rgba(0, 0, 0, .32), 0 0 15px rgba(230, 184, 119, .075) !important;
+  transform: none !important;
+  will-change: auto !important;
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease !important;
+}
+
+html body #app .room-selection-screen .room-hub-card:hover,
+html body #app .room-selection-screen .room-hub-card:focus-visible,
+html body #app .room-selection-screen .room-hub-card.ntn-scroll-focus {
+  z-index: 3 !important;
+  border-color: rgba(249, 218, 170, 1) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .045), 0 16px 34px rgba(0, 0, 0, .38), 0 0 23px rgba(237, 195, 135, .16) !important;
+}
+
+html body #app .room-selection-screen .room-hub-card:active {
+  transform: scale(.988) !important;
+}
+
+html body #app .room-selection-screen .room-hub-card::before {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  inset: 0 !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  opacity: 1 !important;
+  border: 0 !important;
+  border-radius: inherit !important;
+  background-color: #172838 !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-blend-mode: multiply !important;
+  filter: saturate(.70) brightness(.69) contrast(1.09) !important;
+  transform: scale(1.025) !important;
+  pointer-events: none !important;
+}
+
+html body #app .room-selection-screen .room-hub-card::after {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 1 !important;
+  inset: 0 !important;
+  display: block !important;
+  border-radius: inherit !important;
+  background:
+    linear-gradient(180deg, rgba(2, 13, 22, .14) 0%, transparent 40%, rgba(3, 15, 26, .58) 70%, rgba(2, 13, 23, .97) 100%),
+    linear-gradient(125deg, rgba(3, 17, 29, .40) 0%, transparent 48%) !important;
+  pointer-events: none !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kitchen"]::before { background-position: 50% 50% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bathroom"]::before { background-position: 54% 50% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="toilet"]::before { background-position: 57% 50% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="living"]::before { background-position: 52% 50% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bedroom"]::before { background-position: 50% 50% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kids"]::before { background-position: 57% 50% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="hallway"]::before { background-position: 47% 50% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="balcony"]::before { background-position: 55% 50% !important; }
+
+/* První čtyři dlaždice používají přímo schválenou kompozici jako přesný
+   obrazový atlas. Klikací plocha, stav výběru i navigace zůstávají HTML. */
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kitchen"]::before,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bathroom"]::before,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="toilet"]::before,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="living"]::before {
+  background-color: transparent !important;
+  
+  background-repeat: no-repeat !important;
+  background-size: 220% auto !important;
+  background-blend-mode: normal !important;
+  filter: none !important;
+  transform: scale(1.006) !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kitchen"],
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bathroom"],
+html body #app .room-selection-screen .room-hub-card[data-room-summary="toilet"],
+html body #app .room-selection-screen .room-hub-card[data-room-summary="living"] {
+  border-color: transparent !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kitchen"]::before { background-position: 7.4% 45.3% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bathroom"]::before { background-position: 92.4% 45.3% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="toilet"]::before { background-position: 7.4% 79.4% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="living"]::before { background-position: 92.4% 79.4% !important; }
+
+/* Spodní čtyři pokoje používají tmavé interiéry ze schválené celé sestavy;
+   bereme pouze čistou fotografickou část a UI nad ní zůstává živé. */
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bedroom"]::before,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kids"]::before,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="hallway"]::before,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="balcony"]::before,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="stairs"]::before {
+  background-color: transparent !important;
+  
+  background-repeat: no-repeat !important;
+  background-size: 403.8% auto !important;
+  background-blend-mode: normal !important;
+  filter: saturate(.82) brightness(.90) contrast(1.05) !important;
+  transform: scale(1.02) !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bedroom"]::before { background-position: 32.6% 60.0% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kids"]::before { background-position: 87.7% 60.0% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="hallway"]::before { background-position: 32.6% 76.9% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="balcony"]::before { background-position: 87.7% 76.9% !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="stairs"]::before { background-position: 32.6% 76.9% !important; }
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kitchen"]::after,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bathroom"]::after,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="toilet"]::after,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="living"]::after,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kitchen"] > .choice-icon,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bathroom"] > .choice-icon,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="toilet"] > .choice-icon,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="living"] > .choice-icon,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kitchen"] > strong,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bathroom"] > strong,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="toilet"] > strong,
+html body #app .room-selection-screen .room-hub-card[data-room-summary="living"] > strong {
+  display: none !important;
+}
+
+html body #app .room-selection-screen .room-hub-card .choice-icon {
+  position: absolute !important;
+  z-index: 3 !important;
+  top: 16px !important;
+  left: 16px !important;
+  width: 74px !important;
+  height: 74px !important;
+  display: grid !important;
+  place-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1.5px solid rgba(239, 200, 143, .92) !important;
+  border-radius: 50% !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background-color: rgba(3, 18, 30, .91) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 39px 39px !important;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .32), inset 0 1px 0 rgba(255, 255, 255, .035) !important;
+  font-size: 0 !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kitchen"] .choice-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23efd0a0' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 19h26v17a5 5 0 0 1-5 5H16a5 5 0 0 1-5-5V19Z'/%3E%3Cpath d='M8 19h32M17 14h14M20 9h8M6 25h5M37 25h5'/%3E%3C/svg%3E") !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bathroom"] .choice-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23efd0a0' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 18V13a8 8 0 0 1 16 0M28 18h8'/%3E%3Cpath d='M36 18c0 5-3 8-8 8M18 28v2M24 28v2M30 28v2M18 35v2M24 35v2M30 35v2'/%3E%3C/svg%3E") !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="toilet"] .choice-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23efd0a0' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 7h16v12H16zM13 22h22c0 10-4 16-11 16s-11-6-11-16Z'/%3E%3Cpath d='M19 38v4h10v-4M20 12h3'/%3E%3C/svg%3E") !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="living"] .choice-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23efd0a0' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 24v-5a7 7 0 0 1 7-7h12a7 7 0 0 1 7 7v5'/%3E%3Cpath d='M8 23h32a4 4 0 0 1 4 4v10H4V27a4 4 0 0 1 4-4ZM10 37v4M38 37v4M14 27h20'/%3E%3C/svg%3E") !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bedroom"] .choice-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23efd0a0' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 37V15M43 37V25a7 7 0 0 0-7-7H18a7 7 0 0 0-7 7v12M5 31h38M11 18v-7h12v7M8 37v4M40 37v4'/%3E%3C/svg%3E") !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kids"] .choice-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23efd0a0' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='24' cy='20' r='10'/%3E%3Ccircle cx='14' cy='10' r='5'/%3E%3Ccircle cx='34' cy='10' r='5'/%3E%3Ccircle cx='20' cy='18' r='1' fill='%23efd0a0'/%3E%3Ccircle cx='28' cy='18' r='1' fill='%23efd0a0'/%3E%3Cpath d='M20 24c2 2 6 2 8 0M17 28c-6 3-7 11-2 14M31 28c6 3 7 11 2 14M19 30l-2 12M29 30l2 12M17 37h14'/%3E%3C/svg%3E") !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="hallway"] .choice-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23efd0a0' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 12a4 4 0 1 1 6 3.4L24 17v4'/%3E%3Cpath d='m24 21-17 13h34L24 21Z'/%3E%3C/svg%3E") !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="balcony"] .choice-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23efd0a0' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M24 40V24M15 40h18M18 24h12l-2 11h-8l-2-11Z'/%3E%3Cpath d='M24 23c-6-2-9-6-8-11 6 1 9 5 8 11ZM24 23c5-3 9-7 8-13-6 1-9 6-8 13ZM24 15c-2-4-1-8 3-11 3 5 2 8-3 11Z'/%3E%3C/svg%3E") !important;
+}
+
+html body #app .room-selection-screen .room-hub-card > strong {
+  position: absolute !important;
+  z-index: 3 !important;
+  left: 18px !important;
+  right: 14px !important;
+  bottom: 17px !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font: 0/1 var(--mv-serif) !important;
+  letter-spacing: -.025em !important;
+  text-align: left !important;
+  text-shadow: 0 3px 13px rgba(0, 0, 0, .86) !important;
+}
+
+html body #app .room-selection-screen .room-hub-card > strong::after {
+  display: block !important;
+  color: var(--mv-ivory) !important;
+  -webkit-text-fill-color: var(--mv-ivory) !important;
+  font: 700 clamp(23px, 3.45vw, 31px)/1.02 var(--mv-serif) !important;
+}
+
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kitchen"] > strong::after { content: "Kuchyně" !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bathroom"] > strong::after { content: "Koupelna" !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="toilet"] > strong::after { content: "WC" !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="living"] > strong::after { content: "Obývací pokoj" !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="bedroom"] > strong::after { content: "Ložnice" !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="kids"] > strong::after { content: "Dětský pokoj" !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="hallway"] > strong::after { content: "Chodba a předsíň" !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="balcony"] > strong::after { content: "Balkon / lodžie" !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary="stairs"] > strong::after { content: "Schody v domě" !important; }
+html body #app .room-selection-screen .room-hub-card[data-room-summary^="extra"] > strong::after { content: "Další pokoj" !important; }
+
+html body #app .room-selection-screen .room-hub-card > .room-empty-copy,
+html body #app .room-selection-screen .room-hub-card > .room-selected-copy,
+html body #app .room-selection-screen .room-card-counter-engine,
+html body #app .room-selection-screen .room-hub-card > .badge {
+  display: none !important;
+}
+
+html body #app .room-selection-screen .room-selected-check {
+  position: absolute !important;
+  z-index: 5 !important;
+  top: 14px !important;
+  right: 14px !important;
+  left: auto !important;
+  width: 38px !important;
+  height: 38px !important;
+  place-items: center !important;
+  margin: 0 !important;
+  border: 1.5px solid rgba(244, 216, 174, .96) !important;
+  border-radius: 50% !important;
+  color: #07131e !important;
+  background: var(--mv-champagne-soft) !important;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, .34), 0 0 13px rgba(238, 196, 133, .24) !important;
+  font: 900 21px/1 var(--mv-sans) !important;
+}
+
+html body #app .room-selection-screen .room-hub-card:not(.selected):not(.is-room-confirmed) .room-selected-check {
+  display: none !important;
+}
+
+html body #app .room-selection-screen .room-hub-card.selected .room-selected-check,
+html body #app .room-selection-screen .room-hub-card.is-room-confirmed .room-selected-check {
+  display: grid !important;
+}
+
+html body #app .room-selection-screen .extra-room-controls,
+html body #app .room-selection-screen .extra-room-list {
+  display: contents !important;
+}
+
+html body #app .room-selection-screen .extra-room-add {
+  position: relative !important;
+  isolation: isolate !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-end !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  aspect-ratio: 1.02 / 1 !important;
+  margin: 0 !important;
+  padding: 94px 18px 18px !important;
+  gap: 4px !important;
+  overflow: hidden !important;
+  border: 1.55px solid rgba(238, 197, 138, .88) !important;
+  border-radius: 18px !important;
+  color: var(--mv-ivory) !important;
+  text-align: left !important;
+  background:
+    radial-gradient(circle at 24% 20%, rgba(227, 181, 113, .09), transparent 35%),
+    linear-gradient(145deg, #091b29, #030e18 72%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035), 0 13px 28px rgba(0, 0, 0, .32) !important;
+  cursor: pointer !important;
+}
+
+html body #app .room-selection-screen .extra-room-add::before {
+  content: "+" !important;
+  position: absolute !important;
+  z-index: 2 !important;
+  top: 16px !important;
+  left: 16px !important;
+  width: 74px !important;
+  height: 74px !important;
+  display: grid !important;
+  place-items: center !important;
+  border: 1.5px solid rgba(239, 200, 143, .92) !important;
+  border-radius: 50% !important;
+  color: var(--mv-champagne-soft) !important;
+  -webkit-text-fill-color: var(--mv-champagne-soft) !important;
+  background: rgba(3, 18, 30, .88) !important;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .26) !important;
+  font: 300 48px/1 var(--mv-sans) !important;
+}
+
+html body #app .room-selection-screen .extra-room-add .extra-room-add-title {
+  display: block !important;
+  margin: 0 !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 0 !important;
+}
+
+html body #app .room-selection-screen .extra-room-add .extra-room-add-title::after {
+  content: "Další pokoj" !important;
+  display: block !important;
+  color: var(--mv-ivory) !important;
+  -webkit-text-fill-color: var(--mv-ivory) !important;
+  font: 700 clamp(23px, 3.45vw, 31px)/1.02 var(--mv-serif) !important;
+}
+
+html body #app .room-selection-screen .extra-room-add small {
+  display: block !important;
+  max-width: 100% !important;
+  margin: 4px 0 0 !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 0 !important;
+}
+
+html body #app .room-selection-screen .extra-room-add small::after {
+  content: "Pracovna nebo pokoj pro hosty" !important;
+  display: block !important;
+  color: #d8d7d5 !important;
+  -webkit-text-fill-color: #d8d7d5 !important;
+  font: 400 clamp(14px, 2.2vw, 18px)/1.2 var(--mv-sans) !important;
+}
+
+html body #app .room-selection-screen .extra-room-limit {
+  grid-column: 1 / -1 !important;
+  color: #bcbec3 !important;
+}
+
+html body #app .room-selection-screen .extra-room-card .extra-room-remove {
+  opacity: .64 !important;
+  transform: scale(.82) !important;
+}
+
+html body #app .room-selection-screen .overview-order-dock {
+  width: min(calc(100% - 24px), 840px) !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: max(9px, env(safe-area-inset-bottom)) !important;
+  padding: 10px 12px !important;
+  border: 1px solid rgba(232, 191, 132, .44) !important;
+  border-radius: 20px !important;
+  color: var(--mv-ivory) !important;
+  background: rgba(4, 16, 27, .96) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .44) !important;
+  transform: translateX(-50%) !important;
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease !important;
+}
+
+html body:not(.ntn-cart-has-items) #app .room-selection-screen .overview-order-dock {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translate(-50%, 22px) !important;
+}
+
+html body.ntn-cart-has-items #app .room-selection-screen .overview-order-dock {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+html body #app .room-selection-screen .page::after {
+  content: "NECH TO NÁM\A STAČÍ JEN PÁR KLIKNUTÍ K RELAXU" !important;
+  display: block !important;
+  margin: 46px 0 0 !important;
+  padding: 25px 0 0 !important;
+  border-top: 1px solid rgba(229, 184, 119, .72) !important;
+  color: var(--mv-champagne) !important;
+  white-space: pre !important;
+  text-align: center !important;
+  font: 700 24px/2 var(--mv-serif) !important;
+  letter-spacing: .14em !important;
+}
+
+/* --------------------------------------------------------------------------
+   MOBIL — dvě velké dlaždice vedle sebe, bez stlačení celé stránky do výřezu.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 700px) {
+  :root { --ntn-sitebar-h: calc(64px + env(safe-area-inset-top)); }
+
+  html body #ntnSiteControls .ntn-sitebar {
+    padding: calc(7px + env(safe-area-inset-top)) 11px 7px !important;
+  }
+
+  html body #ntnSiteControls .ntn-menu-trigger {
+    min-width: 86px !important;
+    padding: 0 12px !important;
+    gap: 8px !important;
+    font-size: 16px !important;
+  }
+
+  html body #ntnSiteControls .ntn-menu-trigger svg {
+    width: 21px !important;
+    height: 21px !important;
+  }
+
+  html body #ntnSiteControls .ntn-account-trigger {
+    min-width: 126px !important;
+    max-width: 137px !important;
+    padding: 3px 10px 3px 3px !important;
+    gap: 7px !important;
+    font-size: 15.5px !important;
+  }
+
+  html body #ntnSiteControls .ntn-account-icon {
+    width: 35px !important;
+    height: 35px !important;
+    min-width: 35px !important;
+  }
+
+  html body #ntnSiteControls .ntn-sitebar-brand {
+    top: calc(5px + env(safe-area-inset-top)) !important;
+    width: 76px !important;
+    height: 52px !important;
+  }
+
+  html body #ntnSiteControls .ntn-sitebar-brand img {
+    width: 75px !important;
+    height: 55px !important;
+    max-width: 75px !important;
+    max-height: 55px !important;
+  }
+
+  html body #app #screen-property > .topbar,
+  html body #app .room-selection-screen > .topbar,
+  html body #app #screen-city .city-html-stepbar {
+    min-height: 74px !important;
+    height: 74px !important;
+    padding: 7px 14px !important;
+    grid-template-columns: 50px minmax(0, 1fr) 50px !important;
+  }
+
+  html body #app #screen-property .icon-btn.ghost,
+  html body #app .room-selection-screen .icon-btn.ghost,
+  html body #app #screen-city .city-html-back {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    padding-bottom: 4px !important;
+    font-size: 38px !important;
+  }
+
+  html body #app #screen-property .topbar-title strong,
+  html body #app .room-selection-screen .topbar-title strong,
+  html body #app #screen-city .city-html-stepcopy strong {
+    font-size: 22px !important;
+  }
+
+  html body #app #screen-property .topbar-title span,
+  html body #app .room-selection-screen .topbar-title span,
+  html body #app #screen-city .city-html-stepcopy span {
+    font-size: 15px !important;
+  }
+
+  html body #app #screen-city .city-html-hero {
+    min-height: 0 !important;
+    aspect-ratio: 864 / 252 !important;
+    margin: 14px 0 0 !important;
+    padding: 0 !important;
+  }
+
+  html body #app #screen-city .city-html-eyebrow,
+  html body #app .room-selection-screen .page > .eyebrow {
+    margin-bottom: 10px !important;
+    font-size: 12px !important;
+    letter-spacing: .25em !important;
+  }
+
+  html body #app #screen-city .city-html-hero h1 {
+    font-size: clamp(39px, 10.9vw, 49px) !important;
+  }
+
+  html body #app #screen-city .city-html-hero p,
+  html body #app .room-selection-screen .page > .lead {
+    font-size: 17px !important;
+    line-height: 1.35 !important;
+  }
+
+  html body #app #screen-city .city-html-grid {
+    gap: 12px !important;
+    padding: 0 14px !important;
+  }
+
+  html body #app #screen-city .city-html-card {
+    grid-template-columns: 82px minmax(112px, .9fr) minmax(125px, 1.25fr) !important;
+    min-height: 0 !important;
+    aspect-ratio: 4.36 / 1 !important;
+    border-width: 1.35px !important;
+    border-radius: 22px !important;
+  }
+
+  html body #app #screen-city .city-html-icon {
+    width: 68px !important;
+    height: 68px !important;
+    margin-left: 10px !important;
+  }
+
+  html body #app #screen-city .city-html-icon::before {
+    width: 35px !important;
+    height: 45px !important;
+  }
+
+  html body #app #screen-city .city-html-copy {
+    gap: 9px !important;
+    padding: 13px 5px 13px 0 !important;
+  }
+
+  html body #app #screen-city .city-html-copy strong {
+    font-size: clamp(22px, 6.6vw, 28px) !important;
+  }
+
+  html body #app #screen-city .city-html-copy small {
+    gap: 7px !important;
+    font-size: 14px !important;
+  }
+
+  html body #app #screen-city .city-html-copy small i {
+    width: 12px !important;
+    height: 12px !important;
+    flex-basis: 12px !important;
+  }
+
+  html body #app #screen-city .city-html-photo {
+    min-height: 0 !important;
+  }
+
+  html body #app #screen-city .city-html-footer {
+    gap: 0 !important;
+    padding: 0 !important;
+  }
+
+  html body #app #screen-city .city-html-footer strong {
+    font-size: 20px !important;
+  }
+
+  html body #app #screen-city .city-html-footer p {
+    font-size: 11px !important;
+    letter-spacing: .16em !important;
+  }
+
+  html body #app #screen-property .page.narrow.property-v208-shell,
+  html body #app .room-selection-screen > .page {
+    width: calc(100% - 28px) !important;
+  }
+
+  html body #app #screen-property .page.narrow.property-v208-shell {
+    padding: 27px 0 34px !important;
+  }
+
+  html body #app #screen-property .property-v208-grid {
+    gap: 14px !important;
+    margin-top: 13px !important;
+  }
+
+  html body #app #screen-property .property-v208-card {
+    border-radius: 18px !important;
+  }
+
+  html body #app #screen-property .property-v208-footer {
+    margin-top: 32px !important;
+  }
+
+  html body #app .room-selection-screen > .page {
+    padding: 27px 0 72px !important;
+  }
+
+  html body #app .room-selection-screen .page > h2 {
+    font-size: clamp(38px, 10.8vw, 49px) !important;
+  }
+
+  html body #app .room-selection-screen .page > .lead {
+    margin: 12px 0 22px !important;
+  }
+
+  html body #app .room-selection-screen .card-grid {
+    gap: 10px !important;
+  }
+
+  html body #app .room-selection-screen .room-hub-card,
+  html body #app .room-selection-screen .extra-room-add {
+    border-width: 1.35px !important;
+    border-radius: 14px !important;
+  }
+
+  html body #app .room-selection-screen .room-hub-card .choice-icon,
+  html body #app .room-selection-screen .extra-room-add::before {
+    top: 10px !important;
+    left: 10px !important;
+    width: 54px !important;
+    height: 54px !important;
+  }
+
+  html body #app .room-selection-screen .room-hub-card .choice-icon {
+    background-size: 29px 29px !important;
+  }
+
+  html body #app .room-selection-screen .extra-room-add::before {
+    font-size: 38px !important;
+  }
+
+  html body #app .room-selection-screen .room-hub-card > strong {
+    left: 12px !important;
+    right: 9px !important;
+    bottom: 12px !important;
+  }
+
+  html body #app .room-selection-screen .room-hub-card > strong::after,
+  html body #app .room-selection-screen .extra-room-add .extra-room-add-title::after {
+    font-size: clamp(18px, 5.4vw, 23px) !important;
+  }
+
+  html body #app .room-selection-screen .extra-room-add {
+    padding: 70px 12px 12px !important;
+    gap: 2px !important;
+  }
+
+  html body #app .room-selection-screen .extra-room-add small::after {
+    font-size: clamp(11px, 3.3vw, 14px) !important;
+  }
+
+  html body #app .room-selection-screen .room-selected-check {
+    top: 9px !important;
+    right: 9px !important;
+    width: 31px !important;
+    height: 31px !important;
+    font-size: 17px !important;
+  }
+
+  html body #app .room-selection-screen .page::after {
+    margin-top: 38px !important;
+    padding-top: 20px !important;
+    font-size: 17px !important;
+    line-height: 2.15 !important;
+    letter-spacing: .12em !important;
+  }
+}
+
+@media (max-width: 390px) {
+  html body #ntnSiteControls .ntn-menu-trigger {
+    min-width: 78px !important;
+    padding-inline: 9px !important;
+    font-size: 15px !important;
+  }
+
+  html body #ntnSiteControls .ntn-account-trigger {
+    min-width: 116px !important;
+    max-width: 123px !important;
+    font-size: 14px !important;
+  }
+
+  html body #ntnSiteControls .ntn-sitebar-brand,
+  html body #ntnSiteControls .ntn-sitebar-brand img {
+    width: 68px !important;
+    max-width: 68px !important;
+  }
+
+  html body #app #screen-city .city-html-card {
+    grid-template-columns: 75px minmax(102px, .94fr) minmax(112px, 1.18fr) !important;
+    min-height: 0 !important;
+    aspect-ratio: 4.36 / 1 !important;
+  }
+
+  html body #app #screen-city .city-html-icon {
+    width: 62px !important;
+    height: 62px !important;
+    margin-left: 9px !important;
+  }
+
+  html body #app #screen-city .city-html-copy strong {
+    font-size: clamp(20px, 6.4vw, 25px) !important;
+  }
+
+  html body #app #screen-city .city-html-copy small {
+    font-size: 12.5px !important;
+  }
+
+  html body #app #screen-city .city-html-photo {
+    min-height: 0 !important;
+  }
+}
+
+@supports not (height: 100svh) {
+  @media (max-width: 1023px) {
+    html body #screen-intro.intro-poster-screen,
+    html body #screen-intro .intro-poster-stage,
+    html body #screen-intro .intro-poster-frame {
+      height: 100vh !important;
+      min-height: 100vh !important;
+      max-height: 100vh !important;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body #app #screen-city .city-html-card,
+  html body #app #screen-property .property-v208-card,
+  html body #app .room-selection-screen .room-hub-card,
+  html body #app .room-selection-screen .overview-order-dock {
+    transition: none !important;
+  }
+}
