@@ -1,0 +1,122 @@
+/* V103: jediný doplněk k nezměněnému vzhledu V102 — panel minima objednávky. */
+
+body.ntn-minimum-modal-open {
+  overflow: hidden !important;
+}
+
+.ntn-minimum-modal[hidden] {
+  display: none !important;
+}
+
+.ntn-minimum-modal {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(5, 6, 8, .76);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  animation: ntn-minimum-modal-fade .16s ease-out both;
+}
+
+.ntn-minimum-modal-panel {
+  position: relative;
+  width: min(100%, 430px);
+  padding: 34px 26px 28px;
+  overflow: hidden;
+  border: 1px solid rgba(211, 160, 82, .62);
+  border-radius: 23px;
+  color: #f5f1ea;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .055), transparent 42%),
+    #24252a;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .07),
+    inset 0 -1px 0 rgba(0, 0, 0, .34),
+    0 22px 55px rgba(0, 0, 0, .56),
+    0 0 24px rgba(196, 134, 56, .10);
+  text-align: center;
+  animation: ntn-minimum-modal-rise .18s ease-out both;
+}
+
+.ntn-minimum-modal-close {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(211, 160, 82, .56);
+  border-radius: 13px;
+  color: #d3a052;
+  background: #090a0c;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .06),
+    0 5px 12px rgba(0, 0, 0, .30);
+  font: 400 29px/1 Arial, sans-serif;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ntn-minimum-modal-close:active {
+  transform: translateY(1px) scale(.97);
+}
+
+.ntn-minimum-modal-close:focus-visible {
+  outline: 3px solid rgba(211, 160, 82, .28);
+  outline-offset: 3px;
+}
+
+.ntn-minimum-modal-panel h2 {
+  margin: 0 45px 10px;
+  color: #e2bf79;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(23px, 6vw, 29px);
+  line-height: 1.12;
+  font-weight: 700;
+}
+
+.ntn-minimum-modal-panel p {
+  margin: 0;
+  color: #f5f1ea;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 19px;
+  line-height: 1.48;
+  font-weight: 650;
+}
+
+@keyframes ntn-minimum-modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ntn-minimum-modal-rise {
+  from { opacity: 0; transform: translateY(10px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 390px) {
+  .ntn-minimum-modal {
+    padding: 16px;
+  }
+
+  .ntn-minimum-modal-panel {
+    padding: 31px 20px 25px;
+    border-radius: 20px;
+  }
+
+  .ntn-minimum-modal-panel h2 {
+    margin-inline: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ntn-minimum-modal,
+  .ntn-minimum-modal-panel {
+    animation: none;
+  }
+}

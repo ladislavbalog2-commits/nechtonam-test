@@ -1,0 +1,36 @@
+/* v301 – stabilizační vrstva: jednotnost, mobilní ovládání, bez redesignu */
+:root{
+  --ntn-v301-gold:#d5b36a;
+  --ntn-v301-radius:18px;
+  --ntn-v301-touch:46px;
+}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+body{overscroll-behavior-y:none;}
+button,a,input,select,textarea{-webkit-tap-highlight-color:transparent;}
+button,.btn,[role="button"]{touch-action:manipulation;}
+/* Všechny hlavní akce mají bezpečný dotykový rozměr. */
+#app button:not(.task-card):not(.room-hub-card),
+#app .btn,#app [role="button"]{min-height:var(--ntn-v301-touch);}
+/* Formuláře drží Midnight Velvet a Safari autofill nerozbije vzhled. */
+#app input,#app select,#app textarea{font-size:16px;}
+#app input:-webkit-autofill,#app input:-webkit-autofill:hover,#app input:-webkit-autofill:focus{
+  -webkit-text-fill-color:#f5f0e8;
+  transition:background-color 9999s ease-out 0s;
+  box-shadow:0 0 0 1000px #17191d inset;
+}
+/* Spodní pevné lišty nesmí vytvářet bílou mezeru na iOS. */
+#app :is(.summary-sticky,.bottom-bar,.sticky-bottom,.room-bottom-bar,.task-bottom-bar){
+  padding-bottom:max(10px,env(safe-area-inset-bottom));
+  margin-bottom:0!important;
+}
+/* Karty: stejné zaoblení a čistší zlatá linka tam, kde už zlatý rám existuje. */
+#app :is(.room-hub-card,.task-card,.supplies-choice-card,.ntn-equipment-row){
+  border-radius:var(--ntn-v301-radius);
+}
+/* V souhrnu nenechávej zákazníka řešit sekci vybavení, pokud žádné není potřeba. */
+#summaryEquipmentRecap:has(.ntn-v106-equipment-recap-row .is-ready:last-child){ }
+/* Respektování nastavení omezení animací. */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important;}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+}

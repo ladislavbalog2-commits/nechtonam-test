@@ -1,0 +1,959 @@
+/* V106: pouze krok prostředků a kontroly vybavení. */
+html body #screen-supplies-choice{
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  padding-top:calc(var(--ntn-sitebar-h,60px) + 20px)!important;
+  color:#f5f1ea!important;
+  background:
+    radial-gradient(circle at 50% 0,rgba(208,160,92,.055),transparent 29%),
+    linear-gradient(180deg,#24252a 0%,#1d1e22 55%,#15161a 100%)!important;
+}
+html body #screen-supplies-choice .supplies-choice-shell{
+  width:min(calc(100% - 28px),650px)!important;
+  margin:0 auto!important;
+  padding:16px 0 140px!important;
+  color:#f5f1ea!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+html body #screen-supplies-choice .supplies-choice-shell>.confirmation-brand{
+  display:none!important;
+}
+html body #screen-supplies-choice .ntn-equipment-page-head{
+  display:block!important;
+  margin:0 auto 27px!important;
+  text-align:center!important;
+}
+html body #screen-supplies-choice .ntn-equipment-page-head .eyebrow{
+  display:none!important;
+}
+html body #screen-supplies-choice .ntn-equipment-page-head h2{
+  margin:0!important;
+  color:#f7f2e9!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:clamp(34px,9vw,50px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  text-align:center!important;
+  text-shadow:0 2px 15px rgba(0,0,0,.36)!important;
+}
+html body #screen-supplies-choice .ntn-equipment-page-head p{
+  margin:9px 0 0!important;
+  color:#b4b5b9!important;
+  font-size:19px!important;
+  font-weight:600!important;
+  line-height:1.35!important;
+}
+html body #screen-supplies-choice .ntn-equipment-panel{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  color:#f5f1ea!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+html body #screen-supplies-choice .ntn-equipment-heading{
+  display:none!important;
+}
+html body #screen-supplies-choice .ntn-equipment-list{
+  display:grid!important;
+  gap:15px!important;
+  margin:0!important;
+  padding:0!important;
+  list-style:none!important;
+}
+html body #screen-supplies-choice .ntn-equipment-list[hidden],
+html body #screen-supplies-choice .ntn-equipment-empty[hidden],
+html body #screen-supplies-choice .ntn-equipment-validation[hidden],
+html body #screen-supplies-choice .ntn-supplies-modal[hidden]{
+  display:none!important;
+}
+html body #screen-supplies-choice .ntn-equipment-row{
+  display:block!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:19px!important;
+  overflow:hidden!important;
+  color:#f7f2e9!important;
+  border:1px solid rgba(208,160,92,.42)!important;
+  border-radius:22px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012)),#28292e!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 11px 25px rgba(0,0,0,.20)!important;
+}
+html body #screen-supplies-choice .ntn-equipment-name{
+  display:block!important;
+  margin:0 0 17px!important;
+  color:#f8f3eb!important;
+  font-family:inherit!important;
+  font-size:clamp(24px,6.4vw,31px)!important;
+  font-weight:950!important;
+  letter-spacing:.02em!important;
+  line-height:1.08!important;
+  text-align:center!important;
+  text-transform:uppercase!important;
+}
+html body #screen-supplies-choice .ntn-equipment-choices{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:10px!important;
+}
+html body #screen-supplies-choice .ntn-equipment-answer{
+  display:flex!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:57px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  margin:0!important;
+  padding:10px 12px!important;
+  color:#b5b6ba!important;
+  border:1px solid #505158!important;
+  border-radius:14px!important;
+  background:#101114!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+  font-family:inherit!important;
+  font-size:18px!important;
+  font-weight:950!important;
+  line-height:1!important;
+  cursor:pointer!important;
+  touch-action:manipulation!important;
+}
+html body #screen-supplies-choice .ntn-equipment-answer-mark{
+  display:grid!important;
+  width:24px!important;
+  height:24px!important;
+  flex:0 0 24px!important;
+  place-items:center!important;
+  color:#73757b!important;
+  font:1000 21px/1 Arial,sans-serif!important;
+}
+html body #screen-supplies-choice .ntn-equipment-answer-have.selected{
+  color:#56ef8c!important;
+  border-color:#2ed873!important;
+  background:#101813!important;
+  box-shadow:0 0 0 2px rgba(46,216,115,.10),0 0 17px rgba(46,216,115,.11)!important;
+}
+html body #screen-supplies-choice .ntn-equipment-answer-have.selected .ntn-equipment-answer-mark{
+  color:#3cf27d!important;
+  text-shadow:0 0 10px rgba(60,242,125,.65)!important;
+}
+html body #screen-supplies-choice .ntn-equipment-answer-missing.selected{
+  color:#e8bc75!important;
+  border-color:#c38b43!important;
+  background:#19140e!important;
+  box-shadow:0 0 0 2px rgba(195,139,67,.09)!important;
+}
+html body #screen-supplies-choice .ntn-equipment-answer-missing.selected .ntn-equipment-answer-mark{
+  color:#e8bc75!important;
+}
+html body #screen-supplies-choice .ntn-equipment-answer:focus-visible{
+  outline:3px solid rgba(226,191,121,.36)!important;
+  outline-offset:3px!important;
+}
+html body #screen-supplies-choice .ntn-equipment-empty{
+  display:flex!important;
+  min-height:128px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:13px!important;
+  margin:0!important;
+  padding:24px!important;
+  color:#f4f0e8!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  border-radius:22px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012)),#28292e!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 10px 24px rgba(0,0,0,.18)!important;
+  text-align:center!important;
+}
+html body #screen-supplies-choice .ntn-equipment-empty>span{
+  display:grid!important;
+  width:43px!important;
+  height:43px!important;
+  flex:0 0 43px!important;
+  place-items:center!important;
+  color:#3cf27d!important;
+  border:1px solid #2ed873!important;
+  border-radius:12px!important;
+  background:#101813!important;
+  box-shadow:0 0 16px rgba(46,216,115,.13)!important;
+  font:1000 29px/1 Arial,sans-serif!important;
+  text-shadow:0 0 10px rgba(60,242,125,.65)!important;
+}
+html body #screen-supplies-choice .ntn-equipment-empty>strong{
+  color:#f4f0e8!important;
+  font-size:clamp(20px,5vw,23px)!important;
+  font-weight:900!important;
+  line-height:1.2!important;
+  text-transform:uppercase!important;
+}
+html body #screen-supplies-choice .ntn-equipment-validation{
+  margin:14px 0 0!important;
+  padding:13px 15px!important;
+  color:#f5f0e8!important;
+  border:1px solid #c18a43!important;
+  border-radius:14px!important;
+  background:#171719!important;
+  font-size:18px!important;
+  font-weight:900!important;
+  line-height:1.35!important;
+  text-align:center!important;
+}
+html body #screen-supplies-choice .ntn-equipment-needs-attention{
+  animation:ntnEquipmentAttentionV106 .52s ease both!important;
+}
+@keyframes ntnEquipmentAttentionV106{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-5px)}
+  50%{transform:translateX(5px)}
+  75%{transform:translateX(-3px)}
+}
+html body #screen-supplies-choice .supplies-choice-actions{
+  display:grid!important;
+  gap:8px!important;
+  margin-top:23px!important;
+}
+html body #screen-supplies-choice #confirmSuppliesChoice{
+  min-height:64px!important;
+  color:#080706!important;
+  border:1px solid rgba(246,216,169,.40)!important;
+  border-radius:20px!important;
+  background:linear-gradient(180deg,#e5c27b 0%,#bd7d38 100%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.40),0 11px 25px rgba(0,0,0,.27)!important;
+  font-size:22px!important;
+  font-weight:950!important;
+}
+html body #screen-supplies-choice #confirmSuppliesChoice.ntn-equipment-blocked{
+  color:#77787d!important;
+  border-color:#4a4b50!important;
+  background:#2a2b30!important;
+  box-shadow:none!important;
+  cursor:not-allowed!important;
+}
+html body #screen-supplies-choice .supplies-choice-back{
+  display:none!important;
+}
+
+body.ntn-supplies-modal-open{
+  overflow:hidden!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal{
+  position:fixed!important;
+  z-index:10000!important;
+  inset:0!important;
+  display:grid!important;
+  place-items:center!important;
+  margin:0!important;
+  padding:max(18px,env(safe-area-inset-top)) 18px max(18px,env(safe-area-inset-bottom))!important;
+  background:rgba(5,6,8,.78)!important;
+  -webkit-backdrop-filter:blur(5px)!important;
+  backdrop-filter:blur(5px)!important;
+  animation:ntnSuppliesModalFade .16s ease-out both!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal-panel{
+  position:relative!important;
+  display:block!important;
+  width:min(100%,430px)!important;
+  margin:0!important;
+  padding:28px 21px 21px!important;
+  overflow:hidden!important;
+  color:#f5f1ea!important;
+  border:1px solid rgba(211,160,82,.62)!important;
+  border-radius:23px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.055),transparent 42%),#24252a!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),inset 0 -1px 0 rgba(0,0,0,.34),0 22px 55px rgba(0,0,0,.56),0 0 24px rgba(196,134,56,.10)!important;
+  text-align:center!important;
+  animation:ntnSuppliesModalRise .18s ease-out both!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal-panel h2{
+  margin:0 0 20px!important;
+  color:#e2bf79!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:clamp(25px,6.8vw,31px)!important;
+  font-weight:700!important;
+  line-height:1.12!important;
+  text-align:center!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal-options{
+  display:grid!important;
+  gap:10px!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-card{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 42px!important;
+  grid-template-rows:auto!important;
+  width:100%!important;
+  min-height:76px!important;
+  height:auto!important;
+  aspect-ratio:auto!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin:0!important;
+  padding:13px 13px 13px 16px!important;
+  color:#f5f1ea!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+  border-radius:16px!important;
+  background:#17181c!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+  cursor:pointer!important;
+  touch-action:manipulation!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-card.selected,
+html body:where(:not(.nf)):has(#supplies-customer:checked) #screen-supplies-choice .ntn-supplies-modal .supplies-pre-customer,
+html body:where(:not(.nf)):has(#supplies-helper:checked) #screen-supplies-choice .ntn-supplies-modal .supplies-pre-helper{
+  border-color:rgba(226,191,121,.76)!important;
+  background:linear-gradient(145deg,rgba(208,160,92,.07),rgba(255,255,255,.018)),#292a2f!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 7px 18px rgba(0,0,0,.20)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-copy{
+  display:flex!important;
+  min-width:0!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:10px!important;
+  margin:0!important;
+  padding:0!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-copy strong{
+  display:block!important;
+  margin:0!important;
+  color:#f7f2e9!important;
+  font-family:inherit!important;
+  font-size:19px!important;
+  font-weight:950!important;
+  line-height:1.12!important;
+  text-align:left!important;
+  text-transform:uppercase!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-price{
+  display:block!important;
+  min-height:0!important;
+  flex:0 0 auto!important;
+  margin:0!important;
+  padding:0!important;
+  color:#e3b76f!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  font-family:inherit!important;
+  font-size:22px!important;
+  font-style:normal!important;
+  font-weight:950!important;
+  line-height:1!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-radio{
+  position:static!important;
+  display:grid!important;
+  width:38px!important;
+  height:38px!important;
+  min-width:38px!important;
+  place-items:center!important;
+  margin:0!important;
+  color:#3cf27d!important;
+  border:1px solid #8c6b3d!important;
+  border-radius:10px!important;
+  background:#090a0c!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-radio::before{
+  display:none!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-radio::after{
+  position:static!important;
+  content:'✓'!important;
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  color:#3cf27d!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  opacity:0!important;
+  transform:scale(.55)!important;
+  font:1000 28px/1 Arial,sans-serif!important;
+  text-shadow:0 0 10px rgba(60,242,125,.68)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-card.selected .supplies-choice-radio,
+html body:where(:not(.nf)):has(#supplies-customer:checked) #screen-supplies-choice .ntn-supplies-modal .supplies-pre-customer .supplies-choice-radio,
+html body:where(:not(.nf)):has(#supplies-helper:checked) #screen-supplies-choice .ntn-supplies-modal .supplies-pre-helper .supplies-choice-radio{
+  border-color:#2ed873!important;
+  background:#101813!important;
+  box-shadow:0 0 15px rgba(46,216,115,.14)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-card.selected .supplies-choice-radio::after,
+html body:where(:not(.nf)):has(#supplies-customer:checked) #screen-supplies-choice .ntn-supplies-modal .supplies-pre-customer .supplies-choice-radio::after,
+html body:where(:not(.nf)):has(#supplies-helper:checked) #screen-supplies-choice .ntn-supplies-modal .supplies-pre-helper .supplies-choice-radio::after{
+  opacity:1!important;
+  transform:scale(1)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-card:focus-visible{
+  outline:3px solid rgba(226,191,121,.34)!important;
+  outline-offset:3px!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal-confirm{
+  display:flex!important;
+  width:100%!important;
+  min-height:57px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:15px 0 0!important;
+  padding:12px 18px!important;
+  color:#080706!important;
+  border:1px solid rgba(246,216,169,.40)!important;
+  border-radius:16px!important;
+  background:linear-gradient(180deg,#e5c27b 0%,#bd7d38 100%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.40),0 10px 22px rgba(0,0,0,.28)!important;
+  font-family:inherit!important;
+  font-size:20px!important;
+  font-weight:950!important;
+  line-height:1!important;
+  cursor:pointer!important;
+  touch-action:manipulation!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal-confirm:focus-visible{
+  outline:3px solid rgba(226,191,121,.36)!important;
+  outline-offset:3px!important;
+}
+@keyframes ntnSuppliesModalFade{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes ntnSuppliesModalRise{
+  from{opacity:0;transform:translateY(10px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+@media(max-width:390px){
+  html body #screen-supplies-choice{
+    padding-top:calc(var(--ntn-sitebar-h,60px) + 14px)!important;
+  }
+  html body #screen-supplies-choice .supplies-choice-shell{
+    width:calc(100% - 22px)!important;
+    padding-top:13px!important;
+  }
+  html body #screen-supplies-choice .ntn-equipment-page-head{
+    margin-bottom:22px!important;
+  }
+  html body #screen-supplies-choice .ntn-equipment-page-head p{
+    font-size:18px!important;
+  }
+  html body #screen-supplies-choice .ntn-equipment-row{
+    padding:16px!important;
+    border-radius:19px!important;
+  }
+  html body #screen-supplies-choice .ntn-equipment-answer{
+    min-height:54px!important;
+    padding-inline:8px!important;
+    font-size:17px!important;
+  }
+  html body #screen-supplies-choice .ntn-supplies-modal{
+    padding:16px!important;
+  }
+  html body #screen-supplies-choice .ntn-supplies-modal-panel{
+    padding:25px 17px 18px!important;
+    border-radius:20px!important;
+  }
+  html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-card{
+    grid-template-columns:minmax(0,1fr) 38px!important;
+    min-height:73px!important;
+    padding-left:13px!important;
+  }
+  html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-copy strong{
+    font-size:17px!important;
+  }
+  html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-price{
+    font-size:20px!important;
+  }
+  html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-radio{
+    width:35px!important;
+    height:35px!important;
+    min-width:35px!important;
+  }
+}
+
+@media(max-width:340px){
+  html body #screen-supplies-choice .ntn-equipment-choices{
+    grid-template-columns:1fr!important;
+  }
+  html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-copy{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+    gap:5px!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  html body #screen-supplies-choice .ntn-equipment-needs-attention,
+  html body #screen-supplies-choice .ntn-supplies-modal,
+  html body #screen-supplies-choice .ntn-supplies-modal-panel{
+    animation:none!important;
+  }
+}
+
+/* V106 – pouze doplnění informace o vybavení do souhrnu. */
+html body #screen-summary .ntn-v106-equipment-recap{
+  display:grid!important;
+  gap:7px!important;
+  margin:12px 0 0!important;
+  padding:13px!important;
+  color:#f4f0e8!important;
+  border:1px solid rgba(208,160,92,.22)!important;
+  border-radius:14px!important;
+  background:#1b1c20!important;
+}
+html body #screen-summary .ntn-v106-equipment-recap-title{
+  color:#e4b36a!important;
+  font-size:16px!important;
+  font-weight:950!important;
+  letter-spacing:.05em!important;
+  text-transform:uppercase!important;
+}
+html body #screen-summary .ntn-v106-equipment-recap-row,
+html body #screen-payment .ntn-v106-prep-row{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:10px!important;
+  align-items:center!important;
+  min-height:42px!important;
+  padding:9px 10px!important;
+  color:#f2eee7!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  border-radius:11px!important;
+  background:#24252a!important;
+}
+html body #screen-summary .ntn-v106-equipment-recap-row span,
+html body #screen-payment .ntn-v106-prep-row span{
+  color:#c8c4bd!important;
+  font-size:16px!important;
+  font-weight:750!important;
+  line-height:1.25!important;
+}
+html body #screen-summary .ntn-v106-equipment-recap-row b,
+html body #screen-payment .ntn-v106-prep-row strong{
+  color:#f4f0e8!important;
+  font-size:15px!important;
+  font-weight:950!important;
+  line-height:1.15!important;
+  text-align:right!important;
+}
+html body #screen-summary .ntn-v106-equipment-recap-row .is-ready,
+html body #screen-payment .ntn-v106-prep-row .is-ready{
+  color:#4eeb85!important;
+}
+html body #screen-summary .ntn-v106-equipment-recap-row .is-missing,
+html body #screen-payment .ntn-v106-prep-row .is-missing{
+  color:#e7b66d!important;
+}
+html body #screen-summary .ntn-v106-equipment-recap-row .is-unanswered{
+  color:#c8c4bd!important;
+}
+html body #screen-payment .ntn-v106-summary-prep{
+  display:grid!important;
+  gap:7px!important;
+  padding:12px!important;
+  color:#f4f0e8!important;
+  border-top:1px solid rgba(208,160,92,.14)!important;
+  background:#1b1c20!important;
+}
+html body #screen-payment .checkout-accordion__value{
+  color:#f5f0e8!important;
+}
+
+/* V108: po zrušení mezikroku vede vybavení rovnou k termínu. */
+html body #screen-supplies-choice .supplies-choice-shell{
+  position:relative!important;
+}
+html body #screen-supplies-choice .ntn-equipment-back,
+html body #screen-confirmation .ntn-confirmation-back{
+  width:52px!important;
+  height:52px!important;
+  display:grid!important;
+  place-items:center!important;
+  border:1px solid rgba(211,160,82,.42)!important;
+  border-radius:50%!important;
+  color:#e1b66f!important;
+  background:linear-gradient(145deg,#2b2c31,#1b1c20)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 8px 20px rgba(0,0,0,.24)!important;
+  font-size:34px!important;
+  line-height:1!important;
+  text-decoration:none!important;
+}
+html body #screen-supplies-choice .ntn-equipment-back{
+  margin:0 0 14px!important;
+}
+html body #screen-confirmation .ntn-confirmation-back{
+  margin:0 0 18px!important;
+}
+
+/* Minimum je důležité jen při výběru prací; jeho průběh je jasně zelený. */
+html body .minimum-progress-fill,
+html body .minimum-dock-progress-fill{
+  background:linear-gradient(90deg,#15994f 0%,#43e987 100%)!important;
+  box-shadow:0 0 12px rgba(48,220,119,.32)!important;
+}
+
+/* Jediný konečný souhrn: slevový kód a fotografie jsou přímo u kontroly platby. */
+html body #screen-payment .final-order-extras{
+  display:grid!important;
+  gap:12px!important;
+  margin:14px 0 22px!important;
+}
+html body #screen-payment .discount-code-card{
+  margin:0!important;
+  padding:16px!important;
+  border:1px solid rgba(208,160,92,.35)!important;
+  border-radius:18px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012)),#202126!important;
+  box-shadow:0 10px 24px rgba(0,0,0,.20)!important;
+}
+html body #screen-payment .discount-code-card .discount-code-icon{
+  color:#d3a052!important;
+  background:#17181b!important;
+}
+html body #screen-payment .discount-code-card .discount-code-head span,
+html body #screen-payment .discount-code-card .discount-code-head strong{
+  color:#d3a052!important;
+}
+html body #screen-payment .discount-code-card p{color:#aaa6a0!important;}
+html body #screen-payment .photo-box{
+  margin:0!important;
+  border:1px solid rgba(208,160,92,.28)!important;
+  background:#202126!important;
+}
+html body #screen-payment .photo-box summary{
+  color:#f3eee6!important;
+}
+
+
+/* V131 – luxusnější vzhled modalu Čisticí prostředky */
+html body #screen-supplies-choice .ntn-supplies-modal{
+  background:
+    radial-gradient(circle at 50% 16%, rgba(225,183,107,.08), transparent 34%),
+    rgba(4,5,8,.84)!important;
+  -webkit-backdrop-filter: blur(9px)!important;
+  backdrop-filter: blur(9px)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal-panel{
+  width:min(100%,460px)!important;
+  padding:30px 22px 22px!important;
+  border:1px solid rgba(226,186,118,.72)!important;
+  border-radius:28px!important;
+  background:
+    radial-gradient(circle at 50% 0, rgba(255,234,193,.11), transparent 36%),
+    radial-gradient(circle at 84% 16%, rgba(206,150,79,.08), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,0) 18%),
+    linear-gradient(145deg, #2d2e34 0%, #1c1d22 55%, #141519 100%)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -1px 0 rgba(0,0,0,.38),
+    0 26px 60px rgba(0,0,0,.56),
+    0 0 0 1px rgba(255,224,171,.05),
+    0 0 28px rgba(205,146,72,.12)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal-panel::before{
+  content:''!important;
+  position:absolute!important;
+  inset:0!important;
+  border-radius:inherit!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.06), transparent 18%),
+    radial-gradient(circle at 16% 12%, rgba(255,255,255,.07), transparent 22%);
+  opacity:.9!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal-panel h2{
+  position:relative!important;
+  margin:0 0 22px!important;
+  color:#e8c685!important;
+  font-size:clamp(29px,7vw,35px)!important;
+  letter-spacing:-.01em!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.08), 0 8px 24px rgba(0,0,0,.35)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal-options{
+  gap:14px!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-card{
+  grid-template-columns:minmax(0,1fr) 52px!important;
+  min-height:96px!important;
+  gap:14px!important;
+  padding:18px 17px 18px 18px!important;
+  border:1px solid rgba(226,186,118,.28)!important;
+  border-radius:22px!important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0) 28%),
+    radial-gradient(circle at 10% 16%, rgba(219,170,94,.07), transparent 28%),
+    linear-gradient(145deg, #18191d 0%, #0f1014 100%)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    inset 0 -1px 0 rgba(0,0,0,.46),
+    0 12px 28px rgba(0,0,0,.22)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-card::before{
+  content:''!important;
+  position:absolute!important;
+  left:0!important;
+  top:14px!important;
+  bottom:14px!important;
+  width:4px!important;
+  border-radius:0 999px 999px 0!important;
+  background:linear-gradient(180deg, rgba(245,207,140,.95), rgba(162,101,42,.85))!important;
+  opacity:.38!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-card.selected,
+html body:where(:not(.nf)):has(#supplies-customer:checked) #screen-supplies-choice .ntn-supplies-modal .supplies-pre-customer,
+html body:where(:not(.nf)):has(#supplies-helper:checked) #screen-supplies-choice .ntn-supplies-modal .supplies-pre-helper{
+  border-color:rgba(236,194,126,.88)!important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0) 30%),
+    radial-gradient(circle at 14% 20%, rgba(236,183,94,.10), transparent 30%),
+    linear-gradient(145deg, #2a2b31 0%, #1e2026 100%)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    inset 0 0 0 1px rgba(248,214,154,.08),
+    0 14px 34px rgba(0,0,0,.28),
+    0 0 18px rgba(218,158,81,.10)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-card.selected::before,
+html body:where(:not(.nf)):has(#supplies-customer:checked) #screen-supplies-choice .ntn-supplies-modal .supplies-pre-customer::before,
+html body:where(:not(.nf)):has(#supplies-helper:checked) #screen-supplies-choice .ntn-supplies-modal .supplies-pre-helper::before{
+  opacity:.95!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-copy{
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  gap:8px!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-copy strong{
+  color:#fff5e8!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:24px!important;
+  font-weight:650!important;
+  letter-spacing:-.015em!important;
+  line-height:1.05!important;
+  text-transform:none!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-price{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:34px!important;
+  padding:0 12px!important;
+  color:#150f09!important;
+  border:1px solid rgba(249,223,181,.45)!important;
+  border-radius:999px!important;
+  background:
+    radial-gradient(circle at 50% 0, rgba(255,255,255,.26), transparent 42%),
+    linear-gradient(180deg, #ebc67e 0%, #c28644 100%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.44), 0 6px 14px rgba(0,0,0,.18)!important;
+  font-size:20px!important;
+  font-weight:950!important;
+  letter-spacing:.01em!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-radio{
+  width:46px!important;
+  height:46px!important;
+  min-width:46px!important;
+  border:1px solid rgba(231,190,123,.70)!important;
+  border-radius:14px!important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0) 34%),
+    linear-gradient(145deg, #191a1f 0%, #0d0e12 100%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 8px 18px rgba(0,0,0,.24)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-radio::after{
+  color:#f7f4ec!important;
+  font:1000 31px/1 Arial,sans-serif!important;
+  text-shadow:0 2px 3px rgba(62,35,12,.45)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-card.selected .supplies-choice-radio,
+html body:where(:not(.nf)):has(#supplies-customer:checked) #screen-supplies-choice .ntn-supplies-modal .supplies-pre-customer .supplies-choice-radio,
+html body:where(:not(.nf)):has(#supplies-helper:checked) #screen-supplies-choice .ntn-supplies-modal .supplies-pre-helper .supplies-choice-radio{
+  border-color:#f2cb8c!important;
+  background:
+    radial-gradient(circle at 34% 24%, rgba(255,241,214,.38), transparent 32%),
+    linear-gradient(150deg, #ecc27b 0%, #ac6a38 100%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.46), 0 10px 22px rgba(0,0,0,.28), 0 0 18px rgba(210,155,76,.14)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-modal-confirm{
+  min-height:62px!important;
+  margin:18px 0 0!important;
+  border:1px solid rgba(250,222,176,.58)!important;
+  border-radius:20px!important;
+  background:
+    radial-gradient(circle at 50% 0, rgba(255,245,221,.34), transparent 42%),
+    linear-gradient(180deg, #ebc87f 0%, #c38341 100%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.52), inset 0 -2px 0 rgba(100,57,21,.16), 0 12px 28px rgba(0,0,0,.30)!important;
+  font-size:22px!important;
+  font-weight:950!important;
+}
+@media(max-width:390px){
+  html body #screen-supplies-choice .ntn-supplies-modal-panel{
+    width:min(100%, 430px)!important;
+    padding:26px 16px 18px!important;
+    border-radius:24px!important;
+  }
+  html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-card{
+    grid-template-columns:minmax(0,1fr) 46px!important;
+    min-height:88px!important;
+    padding:15px 14px 15px 15px!important;
+    border-radius:20px!important;
+  }
+  html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-copy strong{
+    font-size:21px!important;
+  }
+  html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-price{
+    min-height:32px!important;
+    font-size:19px!important;
+  }
+  html body #screen-supplies-choice .ntn-supplies-modal .supplies-choice-radio{
+    width:42px!important;
+    height:42px!important;
+    min-width:42px!important;
+  }
+  html body #screen-supplies-choice .ntn-supplies-modal-confirm{
+    min-height:58px!important;
+    font-size:20px!important;
+  }
+}
+
+
+/* V131 FINAL - přesný luxusní modal, fotografické pozadí je zvlášť a UI je skutečné HTML/CSS */
+html body #screen-supplies-choice .ntn-supplies-reference-modal{
+  position:fixed!important; inset:0!important; z-index:999999!important;
+  display:flex!important; align-items:flex-start!important; justify-content:center!important;
+  width:100vw!important; min-width:0!important; max-width:none!important;
+  height:100dvh!important; min-height:100dvh!important;
+  margin:0!important; padding:clamp(74px,10dvh,104px) 14px 30px!important;
+  overflow-x:hidden!important; overflow-y:auto!important; overscroll-behavior:contain!important;
+  background-color:#090807!important;
+  background-image:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.05) 28%,rgba(0,0,0,.14)),url("images/supplies-luxury-bg-clean-v138.webp")!important;
+  background-repeat:no-repeat!important; background-position:center center!important; background-size:cover!important;
+  -webkit-backdrop-filter:none!important; backdrop-filter:none!important;
+}
+html body #screen-supplies-choice .ntn-supplies-reference-modal[hidden]{display:none!important;}
+html body #screen-supplies-choice .ntn-supplies-reference-panel{
+  position:relative!important; display:block!important;
+  width:min(88vw,430px)!important; min-width:0!important; max-width:430px!important;
+  margin:0 auto!important; padding:22px 17px 20px!important;
+  overflow:visible!important; color:#f5f1ea!important;
+  border:1.6px solid rgba(211,158,77,.94)!important; border-radius:27px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.050),rgba(255,255,255,.010)),#24252a!important;
+  box-shadow:inset 0 1px 0 rgba(255,235,192,.08),0 20px 45px rgba(0,0,0,.48),0 0 0 1px rgba(0,0,0,.35)!important;
+  text-align:center!important; isolation:isolate!important;
+}
+html body #screen-supplies-choice .ntn-supplies-reference-panel::before{content:none!important;display:none!important;}
+html body #screen-supplies-choice .ntn-supplies-reference-panel::after{content:none!important;display:none!important;}
+html body #screen-supplies-choice .ntn-supplies-brand-logo{display:none!important;}
+html body #screen-supplies-choice .ntn-supplies-reference-content{position:relative!important;z-index:2!important;}
+html body #screen-supplies-choice .ntn-supplies-reference-panel h2{
+  margin:0 0 10px!important; color:#efc779!important; font-family:Georgia,"Times New Roman",serif!important;
+  font-size:clamp(34px,8.7vw,48px)!important; font-weight:600!important; line-height:.98!important; letter-spacing:-.035em!important;
+  text-align:center!important; text-shadow:0 1px 0 rgba(255,255,255,.08),0 6px 18px rgba(0,0,0,.32)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-reference-lead{
+  display:block!important; margin:0 0 18px!important; color:#f2eeee!important;
+  font-family:Georgia,"Times New Roman",serif!important; font-size:clamp(16px,3.65vw,20px)!important; font-weight:400!important;
+  line-height:1.2!important; text-align:center!important;
+}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .ntn-supplies-modal-options{display:grid!important;gap:12px!important;margin:0!important;}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-card{
+  position:relative!important; display:grid!important; grid-template-columns:60px minmax(0,1fr) 46px!important; align-items:center!important;
+  gap:12px!important; width:100%!important; min-width:0!important; min-height:104px!important; margin:0!important; padding:14px 14px!important;
+  overflow:hidden!important; color:#fff!important; border:1.3px solid rgba(211,160,82,.24)!important; border-radius:19px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.050),rgba(255,255,255,.010)),#24252a!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important; cursor:pointer!important; touch-action:manipulation!important;
+  transform:none!important; -webkit-tap-highlight-color:transparent!important;
+}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-card::before{content:none!important;display:none!important;}
+html body #screen-supplies-choice .ntn-supplies-choice-icon{
+  display:grid!important; width:52px!important; height:56px!important; place-items:center!important; color:#e7b45f!important; justify-self:center!important; align-self:center!important;
+}
+html body #screen-supplies-choice .ntn-supplies-choice-icon svg{display:block!important;width:100%!important;height:100%!important;fill:#e7b45f!important;stroke:#9a6028!important;stroke-width:.55!important;stroke-linejoin:round!important;filter:drop-shadow(0 2px 4px rgba(0,0,0,.26))!important;}
+html body #screen-supplies-choice .ntn-supplies-choice-icon .ntn-spray-leaf{fill:#111!important;stroke:none!important;}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-copy{
+  display:flex!important; min-width:0!important; flex-direction:column!important; align-items:flex-start!important; justify-content:center!important;
+  gap:4px!important; margin:0!important; padding:0!important; text-align:left!important;
+}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-copy strong{
+  display:block!important; margin:0!important; color:#fff!important; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+  font-size:clamp(18px,4vw,21px)!important; font-weight:900!important; line-height:1.02!important; letter-spacing:-.02em!important; text-align:left!important;
+  text-transform:uppercase!important; white-space:nowrap!important;
+}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-copy small{
+  display:block!important; margin:0!important; color:#efefef!important; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+  font-size:clamp(13.5px,3vw,17px)!important; font-weight:450!important; line-height:1.18!important; text-align:left!important;
+}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-price{
+  display:block!important; min-height:0!important; margin:4px 0 0!important; padding:0!important; color:#e7b15b!important; border:0!important; border-radius:0!important;
+  background:transparent!important; box-shadow:none!important; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important;
+  font-size:clamp(22px,5vw,25px)!important; font-style:normal!important; font-weight:900!important; line-height:1!important; letter-spacing:-.02em!important;
+}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-radio{
+  position:static!important; display:grid!important; width:38px!important; height:38px!important; min-width:38px!important; min-height:38px!important;
+  margin:0!important; place-items:center!important; justify-self:center!important; align-self:center!important; color:#18ef79!important;
+  border:1.8px solid #c38c43!important; border-radius:9px!important; background:#050607!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-radio::before{display:none!important;}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-radio::after{
+  position:static!important; content:"✓"!important; display:block!important; width:auto!important; height:auto!important;
+  color:#19f17a!important; border:0!important; background:transparent!important; opacity:0!important; transform:scale(.55)!important;
+  font:1000 28px/1 Arial,sans-serif!important; text-shadow:0 0 9px rgba(24,241,122,.64)!important;
+}
+html body:where(:not(.nf)):has(#supplies-customer:checked) #screen-supplies-choice .ntn-supplies-reference-modal .supplies-pre-customer,
+html body:where(:not(.nf)):has(#supplies-helper:checked) #screen-supplies-choice .ntn-supplies-reference-modal .supplies-pre-helper,
+html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-card.selected{
+  border-color:rgba(211,160,82,.46)!important; background:linear-gradient(145deg,rgba(226,191,121,.085),rgba(255,255,255,.018)),#27282d!important;
+  box-shadow:inset 0 0 0 1px rgba(255,214,136,.30),inset 0 1px 0 rgba(255,255,255,.04),0 0 13px rgba(229,182,95,.22)!important;
+}
+html body:where(:not(.nf)):has(#supplies-customer:checked) #screen-supplies-choice .ntn-supplies-reference-modal .supplies-pre-customer .supplies-choice-radio,
+html body:where(:not(.nf)):has(#supplies-helper:checked) #screen-supplies-choice .ntn-supplies-reference-modal .supplies-pre-helper .supplies-choice-radio,
+html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-card.selected .supplies-choice-radio{
+  border-color:#1df27b!important; background:#050907!important; box-shadow:0 0 11px rgba(29,242,123,.34),inset 0 0 0 1px rgba(29,242,123,.12)!important;
+}
+html body:where(:not(.nf)):has(#supplies-customer:checked) #screen-supplies-choice .ntn-supplies-reference-modal .supplies-pre-customer .supplies-choice-radio::after,
+html body:where(:not(.nf)):has(#supplies-helper:checked) #screen-supplies-choice .ntn-supplies-reference-modal .supplies-pre-helper .supplies-choice-radio::after,
+html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-card.selected .supplies-choice-radio::after{opacity:1!important;transform:scale(1)!important;}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .ntn-supplies-modal-confirm{
+  display:grid!important; grid-template-columns:1fr auto 1fr!important; align-items:center!important; width:100%!important; min-height:60px!important;
+  margin:14px 0 0!important; padding:8px 18px!important; color:#0a0704!important; border:1px solid rgba(255,227,178,.82)!important; border-radius:16px!important;
+  background:radial-gradient(circle at 48% 0,rgba(255,249,227,.58),transparent 40%),linear-gradient(180deg,#efc97a 0%,#c98539 100%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.68),inset 0 -2px 0 rgba(112,59,14,.22),0 10px 20px rgba(0,0,0,.27)!important;
+  font-family:Georgia,"Times New Roman",serif!important; font-size:clamp(22px,5.5vw,29px)!important; font-weight:700!important; line-height:1!important; cursor:pointer!important;
+}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .ntn-supplies-modal-confirm > span:first-child{grid-column:2!important;}
+html body #screen-supplies-choice .ntn-supplies-reference-modal .ntn-supplies-confirm-arrow{grid-column:3!important;justify-self:start!important;margin-left:10px!important;font-family:Arial,sans-serif!important;font-size:36px!important;font-weight:500!important;line-height:.7!important;transform:translateY(-1px)!important;}
+html body #screen-supplies-choice .ntn-supplies-reference-note{
+  display:flex!important; align-items:center!important; justify-content:center!important; gap:8px!important; margin:14px 0 0!important; color:#d2d0ce!important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif!important; font-size:clamp(13px,2.7vw,15px)!important; font-weight:400!important; line-height:1.22!important; text-align:center!important;
+}
+html body #screen-supplies-choice .ntn-supplies-reference-note svg{display:block!important;flex:0 0 auto!important;width:22px!important;height:22px!important;fill:#d6a650!important;filter:drop-shadow(0 2px 3px rgba(0,0,0,.25))!important;}
+/* Povinný krok: žádné X / zavření mimo / Escape. */
+html body #screen-supplies-choice .ntn-supplies-reference-modal .ntn-supplies-close,
+html body #screen-supplies-choice .ntn-supplies-reference-modal [data-close],
+html body #screen-supplies-choice .ntn-supplies-reference-modal .modal-close{display:none!important;}
+@media(max-width:390px){
+  html body #screen-supplies-choice .ntn-supplies-reference-modal{padding:68px 10px 22px!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-panel{width:min(92vw,408px)!important;padding:18px 12px 16px!important;border-radius:23px!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-panel::before{content:none!important;display:none!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-panel::after{content:none!important;display:none!important;}
+  html body #screen-supplies-choice .ntn-supplies-brand-logo{display:none!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-panel h2{font-size:clamp(30px,8vw,36px)!important;margin-bottom:8px!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-lead{font-size:15px!important;margin-bottom:14px!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-card{grid-template-columns:45px minmax(0,1fr) 33px!important;gap:8px!important;min-height:88px!important;padding:10px!important;border-radius:16px!important;}
+  html body #screen-supplies-choice .ntn-supplies-choice-icon{width:39px!important;height:42px!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-copy strong{font-size:16px!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-copy small{font-size:13px!important;line-height:1.16!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-price{font-size:19px!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-radio{width:29px!important;height:29px!important;min-width:29px!important;min-height:29px!important;border-radius:7px!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-modal .supplies-choice-radio::after{font-size:21px!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-modal .ntn-supplies-modal-confirm{min-height:52px!important;margin-top:11px!important;font-size:22px!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-note{margin-top:10px!important;font-size:13px!important;gap:6px!important;}
+  html body #screen-supplies-choice .ntn-supplies-reference-note svg{width:18px!important;height:18px!important;}
+}

@@ -1,0 +1,171 @@
+/* V281: informační okna úkonů podle schváleného návrhu. */
+html body #app:is(#app) .screen.app-info-screen {
+  inset: var(--ntn-sitebar-h, 60px) 0 0 !important;
+  z-index: 1160 !important;
+  min-height: 0 !important;
+  padding: 18px 18px 26px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(2, 12, 21, .68) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  backdrop-filter: blur(4px) !important;
+}
+html body #app:is(#app) .app-info-screen .app-info-sheet {
+  position: relative !important;
+  box-sizing: border-box !important;
+  width: min(100%, 640px) !important;
+  max-height: calc(100dvh - var(--ntn-sitebar-h, 60px) - 44px) !important;
+  padding: 0 !important;
+  overflow-y: auto !important;
+  border: 1.4px solid #eac38a !important;
+  border-radius: 19px !important;
+  color: #f9f7f3 !important;
+  background: linear-gradient(140deg, #102c40 0%, #092135 66%, #071a2c 100%) !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, .36) !important;
+}
+html body #app:is(#app) .app-info-screen .app-info-sheet .topbar {
+  position: static !important;
+  display: block !important;
+  min-height: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+html body #app:is(#app) .app-info-screen .topbar-title,
+html body #app:is(#app) .app-info-screen .topbar-title::before,
+html body #app:is(#app) .app-info-screen .topbar .global-topbar-logo,
+html body #app:is(#app) .app-info-screen .progress,
+html body #app:is(#app) .app-info-screen .app-info-hero .app-task-symbol,
+html body #app:is(#app) .app-info-screen .app-info-hero .eyebrow,
+html body #app:is(#app) .app-info-screen .app-info-hero > p,
+html body #app:is(#app) .app-info-screen .app-info-price-row,
+html body #app:is(#app) .app-info-screen .app-scope-chip,
+html body #app:is(#app) .app-info-screen .v276-detail-controls,
+html body #app:is(#app) .app-info-screen .app-add-choice,
+html body #app:is(#app) .app-info-screen .app-info-hint,
+html body #app:is(#app) .app-info-screen .app-info-cancel-wrap {
+  display: none !important;
+}
+html body #app:is(#app) .app-info-screen .app-info-close-slot {
+  position: absolute !important;
+  z-index: 2 !important;
+  top: 9px !important;
+  right: 9px !important;
+  width: 42px !important;
+  height: 42px !important;
+}
+html body #app:is(#app) .app-info-screen .app-info-close-slot .icon-btn {
+  width: 42px !important;
+  height: 42px !important;
+  border: 1px solid #edc98f !important;
+  border-radius: 50% !important;
+  color: #f7d6a0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font: 700 27px/1 Arial, sans-serif !important;
+}
+html body #app:is(#app) .app-info-screen .page.narrow {
+  box-sizing: border-box !important;
+  max-width: none !important;
+  padding: 48px 17px 18px !important;
+}
+html body #app:is(#app) .app-info-screen .app-info-hero {
+  margin: 0 0 16px !important;
+  padding: 0 0 14px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #e7c38c !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html body #app:is(#app) .app-info-screen .app-info-hero h2 {
+  max-width: calc(100% - 8px) !important;
+  margin: 0 !important;
+  color: #fffaf5 !important;
+  -webkit-text-fill-color: #fffaf5 !important;
+  font: 700 clamp(24px, 6.8vw, 35px)/1.12 Georgia, "Times New Roman", serif !important;
+  letter-spacing: -.02em !important;
+}
+html body #app:is(#app) .app-info-screen .app-info-card {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html body #app:is(#app) .app-info-screen .app-info-card h3 {
+  margin: 0 0 10px !important;
+  color: #efc897 !important;
+  -webkit-text-fill-color: #efc897 !important;
+  font: 700 20px/1.2 Georgia, "Times New Roman", serif !important;
+}
+html body #app:is(#app) .app-info-screen .app-info-card > p {
+  margin: 0 0 12px !important;
+  color: #f4f1ed !important;
+  -webkit-text-fill-color: #f4f1ed !important;
+  font: 400 15px/1.47 system-ui, -apple-system, sans-serif !important;
+}
+html body #app:is(#app) .app-info-screen .app-info-card > p:last-child { margin-bottom: 0 !important; }
+
+/* Některé nové úkony mají informační dialog místo staré obrazovky. */
+html body #modalBackdrop.is-task-info {
+  inset: var(--ntn-sitebar-h, 60px) 0 0 !important;
+  z-index: 1160 !important;
+  align-items: center !important;
+  padding: 18px 18px 26px !important;
+  background: rgba(2, 12, 21, .68) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  backdrop-filter: blur(4px) !important;
+}
+html body #modalBackdrop.is-task-info .modal {
+  position: relative !important;
+  box-sizing: border-box !important;
+  width: min(100%, 640px) !important;
+  max-height: calc(100dvh - var(--ntn-sitebar-h, 60px) - 44px) !important;
+  padding: 48px 17px 18px !important;
+  overflow-y: auto !important;
+  border: 1.4px solid #eac38a !important;
+  border-radius: 19px !important;
+  color: #f9f7f3 !important;
+  background: linear-gradient(140deg, #102c40 0%, #092135 66%, #071a2c 100%) !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, .36) !important;
+}
+html body #modalBackdrop.is-task-info .modal-head { display: block !important; }
+html body #modalBackdrop.is-task-info #modalEyebrow,
+html body #modalBackdrop.is-task-info .v276-detail-controls { display: none !important; }
+html body #modalBackdrop.is-task-info #modalTitle {
+  margin: 0 0 16px !important;
+  padding-bottom: 14px !important;
+  border-bottom: 1px solid #e7c38c !important;
+  color: #fffaf5 !important;
+  font: 700 clamp(24px, 6.8vw, 35px)/1.12 Georgia, "Times New Roman", serif !important;
+  letter-spacing: -.02em !important;
+}
+html body #modalBackdrop.is-task-info #modalClose {
+  position: absolute !important;
+  top: 9px !important;
+  right: 9px !important;
+  width: 42px !important;
+  height: 42px !important;
+  border: 1px solid #edc98f !important;
+  border-radius: 50% !important;
+  color: #f7d6a0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font: 700 27px/1 Arial, sans-serif !important;
+}
+html body #modalBackdrop.is-task-info .modal-body h3 {
+  margin: 0 0 10px !important;
+  color: #efc897 !important;
+  font: 700 20px/1.2 Georgia, "Times New Roman", serif !important;
+}
+html body #modalBackdrop.is-task-info .modal-body p {
+  margin: 0 !important;
+  color: #f4f1ed !important;
+  font: 400 15px/1.47 system-ui, -apple-system, sans-serif !important;
+}
