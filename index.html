@@ -29711,7 +29711,7 @@ if (false && 'serviceWorker' in navigator && location.protocol === 'https:') {
       location.reload();
     });
 
-    navigator.serviceWorker.register('./sw.js?v=321', { scope: './', updateViaCache: 'none' })
+    navigator.serviceWorker.register('./sw.js?v=322', { scope: './', updateViaCache: 'none' })
       .then(function (registration) {
         if (registration.waiting) registration.waiting.postMessage({ type: 'SKIP_WAITING' });
         registration.addEventListener('updatefound', function () {
@@ -39489,3 +39489,106 @@ html body #app .app-room-screen .app-task-info-link{display:none!important}
  new MutationObserver(boot).observe(document.body,{childList:true,subtree:true});
 })();
 </script>
+
+
+<style id="ntn-v322-task-list-hard-fix">
+/* v322 — poslední přepis po v305: karty prací musí být viditelné. */
+html body #app .app-room-screen .app-task-grid{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:10px!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:1px!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+html body #app .app-room-screen .app-task-tile{
+  position:relative!important;
+  width:100%!important;
+  height:166px!important;
+  min-height:166px!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+html body #app .app-room-screen .app-task-tile.ntn-v322-show{
+  display:block!important;
+}
+html body #app .app-room-screen .app-task-tile.ntn-v322-hide{
+  display:none!important;
+}
+</style>
+<script id="ntn-v322-task-list-hard-fix-runtime">
+(function(){
+  'use strict';
+  var labels={basic:'Běžný úklid',appliances:'Spotřebiče',floor:'Podlaha',doors:'Okna a dveře',all:'Celá místnost',other:'Další úkony'};
+
+  function classify(tile){
+    var existing=tile.dataset.v305cat;
+    if(existing) return existing;
+    var s=((tile.dataset.task||'')+' '+((tile.querySelector(':scope > strong')||{}).textContent||'')).toLowerCase();
+    if(/floor|mop|vacuum|sweep|podlah|koberec|vysáv|vysav/.test(s)) return 'floor';
+    if(/oven|microwave|fridge|hob|trouba|lednic|sporák|sporak|deska/.test(s)) return 'appliances';
+    if(/door|window|mirror|dveř|dver|okn|zrcadl/.test(s)) return 'doors';
+    if(/dishes|sink|counter|bin|dust|bed|tidy|basin|toilet|bath|shower|nádob|nadob|dřez|drez|plocha|koš|kos|prach|postel|umyvad|vana|sprch/.test(s)) return 'basic';
+    return 'other';
+  }
+
+  function apply(screen,cat){
+    if(!screen) return;
+    var tiles=screen.querySelectorAll('.app-task-grid .app-task-tile[data-task]');
+    tiles.forEach(function(tile){
+      tile.dataset.v305cat=classify(tile);
+      var show=(cat==='all'||tile.dataset.v305cat===cat);
+      tile.hidden=false;
+      tile.removeAttribute('hidden');
+      tile.classList.toggle('ntn-v322-show',show);
+      tile.classList.toggle('ntn-v322-hide',!show);
+      tile.style.setProperty('display',show?'block':'none','important');
+      if(show){
+        tile.style.setProperty('visibility','visible','important');
+        tile.style.setProperty('opacity','1','important');
+      }
+    });
+    var rail=screen.querySelector('.v305-category-rail');
+    if(rail){
+      rail.querySelectorAll('.v305-cat').forEach(function(b){
+        b.classList.toggle('is-active',b.dataset.cat===cat);
+      });
+    }
+    var title=screen.querySelector('.app-room-intro h2');
+    if(title){
+      if(!title.dataset.v322base) title.dataset.v322base=title.textContent||'Výběr prací';
+      title.textContent=cat==='all'?title.dataset.v322base:(labels[cat]||title.dataset.v322base);
+    }
+  }
+
+  function bind(screen){
+    if(!screen) return;
+    var rail=screen.querySelector('.v305-category-rail');
+    if(rail && rail.dataset.v322!=='1'){
+      rail.dataset.v322='1';
+      rail.addEventListener('click',function(e){
+        var b=e.target.closest('.v305-cat');
+        if(!b) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        apply(screen,b.dataset.cat||'basic');
+      },true);
+    }
+    var active=rail&&rail.querySelector('.v305-cat.is-active');
+    apply(screen,(active&&active.dataset.cat)||'basic');
+  }
+
+  function boot(){
+    document.querySelectorAll('.app-room-screen').forEach(bind);
+  }
+
+  boot();
+  setTimeout(boot,50);
+  setTimeout(boot,250);
+  window.addEventListener('pageshow',function(){setTimeout(boot,40);},{passive:true});
+  window.addEventListener('hashchange',function(){setTimeout(boot,40);},{passive:true});
+})();
+</script>
+
