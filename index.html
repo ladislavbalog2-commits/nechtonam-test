@@ -29711,7 +29711,7 @@ if (false && 'serviceWorker' in navigator && location.protocol === 'https:') {
       location.reload();
     });
 
-    navigator.serviceWorker.register('./sw.js?v=320', { scope: './', updateViaCache: 'none' })
+    navigator.serviceWorker.register('./sw.js?v=321', { scope: './', updateViaCache: 'none' })
       .then(function (registration) {
         if (registration.waiting) registration.waiting.postMessage({ type: 'SKIP_WAITING' });
         registration.addEventListener('updatefound', function () {
@@ -39142,6 +39142,112 @@ html body #app :is(#screen-rooms-flat,#screen-rooms-house).rooms-variant-1-scree
 <link rel="stylesheet" href="v301-stabilizer.css?v=301">
 <script defer src="v279-room-tasks-premium.js?v=279"></script>
 
+
+<style id="ntn-v321-room-visible-fix">
+/* v321: finální pojistka výběru prací pro GitHub Pages/iPhone */
+html body #app .app-room-screen .page{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+html body #app .app-room-screen .app-room-intro{
+  display:block!important;
+}
+html body #app .app-room-screen .v267-room-hero,
+html body #app .app-room-screen .v277-category-holder,
+html body #ntnTaskCategories{
+  display:none!important;
+}
+html body #app .app-room-screen .app-task-grid{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:10px!important;
+  visibility:visible!important;
+  opacity:1!important;
+  min-height:1px!important;
+}
+html body #app .app-room-screen .app-task-tile{
+  visibility:visible!important;
+  opacity:1!important;
+}
+html body #app .app-room-screen .app-task-tile:not([hidden]){
+  display:block!important;
+}
+html body #app .app-room-screen .app-task-tile[hidden]{
+  display:none!important;
+}
+</style>
+<script id="ntn-v321-room-visible-fix-runtime">
+(function(){
+  'use strict';
+  var cats=['basic','appliances','floor','doors','all','other'];
+  var labels={basic:'Běžný úklid',appliances:'Spotřebiče',floor:'Podlaha',doors:'Okna a dveře',all:'Celá místnost',other:'Další úkony'};
+
+  function classify(tile){
+    if(tile.dataset.v305cat) return tile.dataset.v305cat;
+    var s=((tile.dataset.task||'')+' '+((tile.querySelector(':scope > strong')||{}).textContent||'')).toLowerCase();
+    var c='other';
+    if(/floor|mop|vacuum|sweep|podlah|koberec|vysáv|vysav/.test(s)) c='floor';
+    else if(/oven|microwave|fridge|hob|trouba|lednic|sporák|sporak|deska/.test(s)) c='appliances';
+    else if(/door|window|mirror|dveř|dver|okn|zrcadl/.test(s)) c='doors';
+    else if(/dishes|sink|counter|bin|dust|bed|tidy|basin|toilet|bath|shower|nádob|nadob|dřez|drez|plocha|koš|kos|prach|postel|umyvad|vana|sprch/.test(s)) c='basic';
+    tile.dataset.v305cat=c;
+    return c;
+  }
+
+  function showCategory(screen,cat){
+    var tiles=Array.from(screen.querySelectorAll('.app-task-grid .app-task-tile[data-task]'));
+    tiles.forEach(function(tile){
+      var c=classify(tile);
+      tile.hidden=!(cat==='all'||c===cat);
+    });
+    var rail=screen.querySelector('.v305-category-rail');
+    if(rail){
+      rail.querySelectorAll('.v305-cat').forEach(function(b){
+        b.classList.toggle('is-active',b.dataset.cat===cat);
+      });
+    }
+    var intro=screen.querySelector('.app-room-intro h2');
+    if(intro){
+      if(!intro.dataset.v321base) intro.dataset.v321base=intro.textContent||'Výběr prací';
+      intro.textContent=cat==='all'?intro.dataset.v321base:(labels[cat]||intro.dataset.v321base);
+    }
+  }
+
+  function repair(screen){
+    if(!screen) return;
+    var grid=screen.querySelector('.app-task-grid');
+    if(!grid) return;
+    screen.querySelectorAll('.app-task-tile[data-task]').forEach(classify);
+    var rail=screen.querySelector('.v305-category-rail');
+    var active=rail&&rail.querySelector('.v305-cat.is-active');
+    var cat=(active&&active.dataset.cat)||'basic';
+    if(!cats.includes(cat)) cat='basic';
+    showCategory(screen,cat);
+    if(rail && !rail.dataset.v321){
+      rail.dataset.v321='1';
+      rail.addEventListener('click',function(e){
+        var b=e.target.closest('.v305-cat');
+        if(!b) return;
+        showCategory(screen,b.dataset.cat||'basic');
+      },true);
+    }
+  }
+
+  function repairAll(){
+    document.querySelectorAll('.app-room-screen').forEach(repair);
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(repairAll,80);},{once:true});
+  }else{
+    setTimeout(repairAll,80);
+  }
+  window.addEventListener('pageshow',function(){setTimeout(repairAll,80);},{passive:true});
+  window.addEventListener('hashchange',function(){setTimeout(repairAll,40);},{passive:true});
+  setTimeout(repairAll,300);
+})();
+</script>
 </body>
 </html>
 
