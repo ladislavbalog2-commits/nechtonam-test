@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'nechtonam-github-v320';
+const CACHE_NAME = 'nechtonam-github-v323';
 const CORE = [
   './',
   './index.html',
