@@ -103,12 +103,12 @@ html body #app .app-room-screen.v267-room-screen .v267-room-eyebrow{
 html body #app .app-room-screen.v267-room-screen .v267-room-hero h2{
   display:block !important;max-width:340px !important;
   margin:0 !important;padding:0 !important;
-  color:var(--r267-text) !important;-webkit-text-fill-color:var(--r267-text) !important;
+  color:#f7f2eb !important;-webkit-text-fill-color:#f7f2eb !important;
   font:700 clamp(32px,9.3vw,46px)/.98 Georgia,"Times New Roman",serif !important;
   letter-spacing:-.035em !important;text-shadow:0 3px 18px rgba(0,0,0,.30) !important;
 }
 html body #app .app-room-screen.v267-room-screen .v267-room-hero h2 span{
-  color:var(--r267-gold2) !important;-webkit-text-fill-color:var(--r267-gold2) !important;
+  color:#f1d2a5 !important;-webkit-text-fill-color:#f1d2a5 !important;
 }
 
 /* Kategorie. */
