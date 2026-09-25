@@ -170,7 +170,7 @@
 
     var hero=document.createElement('section');
     hero.className='v267-room-hero';
-    hero.innerHTML='<div class="v267-room-hero-copy"><span class="v267-room-eyebrow">'+originalName.toUpperCase()+'</span><h2>Vyber, co<br><span>vezmeme za tebe.</span></h2></div>';
+    hero.innerHTML='<div class="v267-room-hero-copy"><span class="v267-room-eyebrow">'+originalName.toUpperCase()+'</span><h2>Vyber práci,<br><span>kterou uděláme za tebe.</span></h2></div>';
 
     var tabs=document.createElement('nav');
     tabs.className='v267-room-tabs';
