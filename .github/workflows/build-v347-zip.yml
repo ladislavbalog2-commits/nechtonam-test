@@ -1,0 +1,29 @@
+name: Build v347 ZIP
+
+on:
+  push:
+    branches:
+      - chatgpt-v347-headline-20260925
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create deploy ZIP
+        shell: bash
+        run: |
+          mkdir -p /tmp/nechtonam-v347
+          rsync -a --exclude='.git' --exclude='.github' ./ /tmp/nechtonam-v347/
+          cd /tmp/nechtonam-v347
+          zip -qr "$GITHUB_WORKSPACE/nechtonam_v347_BARVY_TEXT.zip" .
+
+      - name: Upload ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: nechtonam_v347_BARVY_TEXT
+          path: nechtonam_v347_BARVY_TEXT.zip
+          if-no-files-found: error
+          retention-days: 3
